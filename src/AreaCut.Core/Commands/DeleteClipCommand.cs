@@ -1,6 +1,6 @@
 using System;
 using AreaCut.Core.Models;
-using AreaCut.Core.Project;
+using ProjectModel = AreaCut.Core.Project.Project;
 
 namespace AreaCut.Core.Commands;
 
@@ -10,13 +10,13 @@ namespace AreaCut.Core.Commands;
 /// </summary>
 public sealed class DeleteClipCommand : ICommand
 {
-    private readonly Project _project;
+    private readonly ProjectModel _project;
     private readonly string _clipId;
     private Clip? _removedClip;
 
     public string Description => $"Delete clip '{_clipId}'";
 
-    public DeleteClipCommand(Project project, string clipId)
+    public DeleteClipCommand(ProjectModel project, string clipId)
     {
         _project = project ?? throw new ArgumentNullException(nameof(project));
         _clipId = clipId ?? throw new ArgumentNullException(nameof(clipId));

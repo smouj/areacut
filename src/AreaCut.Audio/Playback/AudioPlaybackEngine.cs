@@ -1,6 +1,7 @@
 using System;
 using System.Threading;
 using AreaCut.Core.Time;
+using AreaCut.Rendering.Preview;
 
 namespace AreaCut.Audio.Playback;
 

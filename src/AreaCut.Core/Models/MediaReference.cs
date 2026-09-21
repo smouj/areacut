@@ -7,7 +7,7 @@ namespace AreaCut.Core.Models;
 /// </summary>
 public sealed class MediaReference
 {
-    public string Id { get; } = Guid.NewGuid().ToString("N");
+    public string Id { get; init; } = Guid.NewGuid().ToString("N");
     public string FilePath { get; set; }
     public string? FileName { get; set; }
     public MediaKind Kind { get; set; }

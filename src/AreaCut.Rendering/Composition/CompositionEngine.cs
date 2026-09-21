@@ -65,19 +65,21 @@ public sealed class CompositionEngine : IDisposable
             // Apply fade in/out
             if (textClip.FadeInDuration != null)
             {
-                var fadeInEnd = textClip.TimelineStart.Add(textClip.FadeInDuration);
+                var fadeInDuration = textClip.FadeInDuration.Value;
+                var fadeInEnd = textClip.TimelineStart.Add(fadeInDuration);
                 if (timestamp < fadeInEnd)
                 {
-                    var progress = timestamp.Subtract(textClip.TimelineStart).TotalSeconds / textClip.FadeInDuration.TotalSeconds;
+                    var progress = timestamp.Subtract(textClip.TimelineStart).TotalSeconds / fadeInDuration.TotalSeconds;
                     textOpacity *= Math.Clamp(progress, 0, 1);
                 }
             }
             if (textClip.FadeOutDuration != null)
             {
-                var fadeOutStart = textClip.TimelineEnd.Subtract(textClip.FadeOutDuration);
+                var fadeOutDuration = textClip.FadeOutDuration.Value;
+                var fadeOutStart = textClip.TimelineEnd.Subtract(fadeOutDuration);
                 if (timestamp > fadeOutStart)
                 {
-                    var progress = 1.0 - (timestamp.Subtract(fadeOutStart).TotalSeconds / textClip.FadeOutDuration.TotalSeconds);
+                    var progress = 1.0 - (timestamp.Subtract(fadeOutStart).TotalSeconds / fadeOutDuration.TotalSeconds);
                     textOpacity *= Math.Clamp(progress, 0, 1);
                 }
             }

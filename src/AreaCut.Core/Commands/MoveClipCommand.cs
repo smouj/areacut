@@ -1,7 +1,7 @@
 using System;
 using AreaCut.Core.Time;
 using AreaCut.Core.Models;
-using AreaCut.Core.Project;
+using ProjectModel = AreaCut.Core.Project.Project;
 
 namespace AreaCut.Core.Commands;
 
@@ -11,7 +11,7 @@ namespace AreaCut.Core.Commands;
 /// </summary>
 public sealed class MoveClipCommand : ICommand
 {
-    private readonly Project _project;
+    private readonly ProjectModel _project;
     private readonly string _clipId;
     private readonly TimeStamp _newStart;
     private readonly string? _newTrackId;
@@ -20,7 +20,7 @@ public sealed class MoveClipCommand : ICommand
 
     public string Description => $"Move clip '{_clipId}'";
 
-    public MoveClipCommand(Project project, string clipId, TimeStamp newStart, string? newTrackId = null)
+    public MoveClipCommand(ProjectModel project, string clipId, TimeStamp newStart, string? newTrackId = null)
     {
         _project = project ?? throw new ArgumentNullException(nameof(project));
         _clipId = clipId ?? throw new ArgumentNullException(nameof(clipId));

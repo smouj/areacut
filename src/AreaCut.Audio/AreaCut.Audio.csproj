@@ -8,5 +8,6 @@
   </PropertyGroup>
   <ItemGroup>
     <ProjectReference Include="..\AreaCut.Core\AreaCut.Core.csproj" />
+    <ProjectReference Include="..\AreaCut.Rendering\AreaCut.Rendering.csproj" />
   </ItemGroup>
 </Project>

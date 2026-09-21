@@ -3,6 +3,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using AreaCut.Core.Project;
 using AreaCut.Core.Time;
+using AreaCut.Export.Encoder;
 using AreaCut.Export.Presets;
 
 namespace AreaCut.Export.RenderPipeline;
@@ -30,7 +31,7 @@ public sealed class RenderPipeline : IDisposable
             var result = new ExportResult();
             var totalDuration = project.TimelineDuration;
             var totalFrames = (long)(totalDuration.TotalSeconds * preset.Fps);
-            var frameDuration = FrameRate.FromFps(preset.Fps).FrameDuration;
+            var frameDuration = new FrameRate(preset.Fps).FrameDuration;
             var framesRendered = 0;
 
             try

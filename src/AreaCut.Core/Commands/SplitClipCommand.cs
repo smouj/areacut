@@ -1,7 +1,7 @@
 using System;
 using AreaCut.Core.Time;
 using AreaCut.Core.Models;
-using AreaCut.Core.Project;
+using ProjectModel = AreaCut.Core.Project.Project;
 
 namespace AreaCut.Core.Commands;
 
@@ -11,14 +11,14 @@ namespace AreaCut.Core.Commands;
 /// </summary>
 public sealed class SplitClipCommand : ICommand
 {
-    private readonly Project _project;
+    private readonly ProjectModel _project;
     private readonly string _clipId;
     private readonly TimeStamp _splitAt;
     private Clip? _secondClip;
 
     public string Description => $"Split clip '{_clipId}'";
 
-    public SplitClipCommand(Project project, string clipId, TimeStamp splitAt)
+    public SplitClipCommand(ProjectModel project, string clipId, TimeStamp splitAt)
     {
         _project = project ?? throw new ArgumentNullException(nameof(project));
         _clipId = clipId ?? throw new ArgumentNullException(nameof(clipId));

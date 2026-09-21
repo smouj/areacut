@@ -1,5 +1,6 @@
 using System;
 using System.IO;
+using System.Runtime.Versioning;
 using AreaCut.Core.Models;
 using AreaCut.Media.MediaFoundation;
 
@@ -10,6 +11,7 @@ namespace AreaCut.Media.Metadata;
 /// Uses Media Foundation for format detection.
 /// Returns understandable errors for unsupported formats.
 /// </summary>
+[SupportedOSPlatform("windows")]
 public static class MediaProber
 {
     /// <summary>Probe a media file for metadata.</summary>

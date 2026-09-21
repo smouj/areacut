@@ -1,6 +1,5 @@
 using System;
 using System.Runtime.InteropServices;
-using SharpGen.Runtime;
 
 namespace AreaCut.Rendering.Direct3D;
 

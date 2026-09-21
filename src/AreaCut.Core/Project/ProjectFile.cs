@@ -1,6 +1,8 @@
 using System;
 using System.IO;
 using System.Linq;
+using AreaCut.Core.Models;
+using ProjectModel = AreaCut.Core.Project.Project;
 
 namespace AreaCut.Core.Project;
 
@@ -17,7 +19,7 @@ public static class ProjectFile
         => path.EndsWith(Extension, StringComparison.OrdinalIgnoreCase);
 
     /// <summary>Detect media files that have been moved or renamed.</summary>
-    public static void DetectOfflineMedia(Project project)
+    public static void DetectOfflineMedia(ProjectModel project)
     {
         foreach (var media in project.Media)
         {

@@ -1,6 +1,8 @@
 using System;
 using System.Runtime.InteropServices;
+using System.Runtime.Versioning;
 using AreaCut.Core.Models;
+using AreaCut.Media.Metadata;
 
 namespace AreaCut.Media.MediaFoundation;
 
@@ -9,6 +11,7 @@ namespace AreaCut.Media.MediaFoundation;
 /// Extracts metadata, frames, and audio samples.
 /// All COM/MF resources are properly disposed.
 /// </summary>
+[SupportedOSPlatform("windows")]
 public sealed class MediaFoundationReader : IDisposable
 {
     private IntPtr _sourceReader;
