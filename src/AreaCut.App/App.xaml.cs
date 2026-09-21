@@ -1,3 +1,4 @@
+using AreaCutProject = AreaCut.Core.ProjectModel.AreaCutProject;
 using AreaCut.Core.ProjectModel;
 using System;
 using Microsoft.UI.Xaml;
@@ -14,12 +15,12 @@ public sealed partial class App : Microsoft.UI.Xaml.Application
 {
     private MediaFoundationRuntime? _mfRuntime;
     private UndoRedoStack? _undoRedo;
-    private Project? _currentProject;
+    private AreaCutProject? _currentProject;
     private AutoSave? _autoSave;
 
     public MediaFoundationRuntime MfRuntime => _mfRuntime ??= new();
     public UndoRedoStack UndoRedo => _undoRedo ??= new();
-    public Project? CurrentProject => _currentProject;
+    public AreaCutProject? CurrentProject => _currentProject;
 
     public App()
     {
@@ -44,9 +45,9 @@ public sealed partial class App : Microsoft.UI.Xaml.Application
     }
 
     /// <summary>Create a new project with the given canvas specification.</summary>
-    public Project NewProject(string name, CanvasSpec? canvas = null)
+    public AreaCutProject NewProject(string name, CanvasSpec? canvas = null)
     {
-        _currentProject = new Project
+        _currentProject = new AreaCutProject
         {
             Name = name,
             Canvas = canvas ?? CanvasSpec.Vertical1080
@@ -63,9 +64,9 @@ public sealed partial class App : Microsoft.UI.Xaml.Application
     }
 
     /// <summary>Open an existing project file.</summary>
-    public async System.Threading.Tasks.Task<Project> OpenProjectAsync(string filePath)
+    public async System.Threading.Tasks.Task<AreaCutProject> OpenProjectAsync(string filePath)
     {
-        var serializer = new ProjectSerializer();
+        var serializer = new AreaCutProjectSerializer();
         _currentProject = await serializer.LoadAsync(filePath);
         _undoRedo?.Clear();
 
@@ -78,7 +79,7 @@ public sealed partial class App : Microsoft.UI.Xaml.Application
     }
 
     /// <summary>Open a video file directly (from AreaRec integration or drag-drop).</summary>
-    public Project OpenVideoDirectly(string videoPath)
+    public AreaCutProject OpenVideoDirectly(string videoPath)
     {
         var project = NewProject("Untitled");
         // Import the video and add it to the first video track

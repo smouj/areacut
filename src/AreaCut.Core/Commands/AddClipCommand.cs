@@ -1,6 +1,6 @@
 using System;
+using AreaCutProject = AreaCut.Core.ProjectModel.AreaCutProject;
 using AreaCut.Core.Models;
-using ProjectModel = AreaCut.Core.Project.Project;
 
 namespace AreaCut.Core.Commands;
 
@@ -10,12 +10,12 @@ namespace AreaCut.Core.Commands;
 /// </summary>
 public sealed class AddClipCommand : ICommand
 {
-    private readonly ProjectModel _project;
+    private readonly AreaCutProject _project;
     private readonly Clip _clip;
 
     public string Description => $"Add clip '{_clip.Id}'";
 
-    public AddClipCommand(ProjectModel project, Clip clip)
+    public AddClipCommand(AreaCutProject project, Clip clip)
     {
         _project = project ?? throw new ArgumentNullException(nameof(project));
         _clip = clip ?? throw new ArgumentNullException(nameof(clip));

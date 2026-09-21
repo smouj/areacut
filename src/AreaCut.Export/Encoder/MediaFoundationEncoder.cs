@@ -1,3 +1,4 @@
+using AreaCutProject = AreaCut.Core.ProjectModel.AreaCutProject;
 using AreaCut.Core.ProjectModel;
 using System;
 using System.Runtime.InteropServices;
@@ -19,7 +20,7 @@ public sealed class MediaFoundationEncoder : IDisposable
     public TimeSpan TimeRendered { get; private set; }
 
     /// <summary>Start encoding the project to an MP4 file.</summary>
-    public void Start(Project project, ExportPreset preset, string outputPath,
+    public void Start(AreaCutProject project, ExportPreset preset, string outputPath,
         ExportProgress? progressCallback = null, System.Threading.CancellationToken ct = default)
     {
         ObjectDisposedException.ThrowIf(_disposed, this);

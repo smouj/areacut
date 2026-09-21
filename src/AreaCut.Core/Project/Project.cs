@@ -10,7 +10,7 @@ namespace AreaCut.Core.ProjectModel;
 /// Serialized to .areacut JSON files.
 /// Original media files are never modified.
 /// </summary>
-public sealed class Project
+public sealed class AreaCutProject
 {
     public string Id { get; set; } = Guid.NewGuid().ToString("N");
     public string Name { get; set; } = "Untitled";

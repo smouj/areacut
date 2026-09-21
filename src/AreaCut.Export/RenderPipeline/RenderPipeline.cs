@@ -1,10 +1,10 @@
+using AreaCutProject = AreaCut.Core.ProjectModel.AreaCutProject;
 using AreaCut.Core.ProjectModel;
 using System;
 using System.Threading;
 using System.Threading.Tasks;
 using AreaCut.Export.Encoder;
 using AreaCut.Core.Time;
-using AreaCut.Export.Encoder;
 using AreaCut.Export.Presets;
 
 namespace AreaCut.Export.RenderPipeline;
@@ -19,7 +19,7 @@ public sealed class RenderPipeline : IDisposable
 
     /// <summary>Render the project to an MP4 file.</summary>
     public Task<ExportResult> RenderAsync(
-        Project project,
+        AreaCutProject project,
         ExportPreset preset,
         string outputPath,
         IProgress<ExportProgress>? progress = null,

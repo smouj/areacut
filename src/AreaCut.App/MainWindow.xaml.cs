@@ -1,3 +1,4 @@
+using AreaCutProject = AreaCut.Core.ProjectModel.AreaCutProject;
 using AreaCut.Core.ProjectModel;
 using System;
 using System.Collections.ObjectModel;
@@ -17,7 +18,7 @@ namespace AreaCut.App;
 public sealed partial class MainWindow : Window
 {
     private readonly App _app;
-    private Project? _project;
+    private AreaCutAreaCutProject? _project;
     private UndoRedoStack? _undoRedo;
     private PreviewClock? _clock;
 
@@ -36,7 +37,7 @@ public sealed partial class MainWindow : Window
     }
 
     /// <summary>Initialize the window with a project.</summary>
-    public void Initialize(Project project, UndoRedoStack undoRedo)
+    public void Initialize(AreaCutProject project, UndoRedoStack undoRedo)
     {
         _project = project;
         _undoRedo = undoRedo;

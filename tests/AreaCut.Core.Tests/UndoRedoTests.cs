@@ -1,7 +1,7 @@
+using AreaCutProject = AreaCut.Core.ProjectModel.AreaCutProject;
+using AreaCut.Core.ProjectModel;
 using AreaCut.Core.Commands;
 using AreaCut.Core.Models;
-using AreaCut.Core.Project;
-using ProjectModel = AreaCut.Core.Project.Project;
 using AreaCut.Core.Time;
 using AreaCut.Core.Undo;
 using Xunit;
@@ -13,7 +13,7 @@ public class UndoRedoTests
     [Fact]
     public void Execute_AndUndo_Works()
     {
-        var project = new ProjectModel();
+        var project = new AreaCutProject();
         var undoRedo = new UndoRedoStack();
         var clip = new Clip("media1", "track1")
         {
@@ -38,7 +38,7 @@ public class UndoRedoTests
     [Fact]
     public void Redo_AfterUndo_Works()
     {
-        var project = new ProjectModel();
+        var project = new AreaCutProject();
         var undoRedo = new UndoRedoStack();
         var clip = new Clip("media1", "track1")
         {
@@ -59,7 +59,7 @@ public class UndoRedoTests
     [Fact]
     public void NewAction_ClearsRedoStack()
     {
-        var project = new ProjectModel();
+        var project = new AreaCutProject();
         var undoRedo = new UndoRedoStack();
 
         var clip1 = new Clip("m1", "t1") { SourceIn = TimeStamp.Zero, SourceOut = TimeStamp.FromSeconds(10), TimelineStart = TimeStamp.Zero };
@@ -81,7 +81,7 @@ public class UndoRedoTests
     [Fact]
     public void DeleteClip_UndoRestoresClip()
     {
-        var project = new ProjectModel();
+        var project = new AreaCutProject();
         var undoRedo = new UndoRedoStack();
         var clip = new Clip("m1", "t1") { SourceIn = TimeStamp.Zero, SourceOut = TimeStamp.FromSeconds(10), TimelineStart = TimeStamp.Zero };
 
@@ -98,7 +98,7 @@ public class UndoRedoTests
     [Fact]
     public void MoveClip_UndoRestoresPosition()
     {
-        var project = new ProjectModel();
+        var project = new AreaCutProject();
         var undoRedo = new UndoRedoStack();
         var clip = new Clip("m1", "t1") { SourceIn = TimeStamp.Zero, SourceOut = TimeStamp.FromSeconds(10), TimelineStart = TimeStamp.Zero };
 
@@ -114,7 +114,7 @@ public class UndoRedoTests
     [Fact]
     public void SplitClip_UndoMerges()
     {
-        var project = new ProjectModel();
+        var project = new AreaCutProject();
         var undoRedo = new UndoRedoStack();
         var clip = new Clip("m1", "t1") { SourceIn = TimeStamp.Zero, SourceOut = TimeStamp.FromSeconds(10), TimelineStart = TimeStamp.Zero };
 

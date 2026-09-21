@@ -1,6 +1,7 @@
+using AreaCutProject = AreaCut.Core.ProjectModel.AreaCutProject;
+using AreaCut.Core.ProjectModel;
 using System;
 using AreaCut.Core.Models;
-using AreaCut.Core.Project;
 using AreaCut.Core.Time;
 
 namespace AreaCut.Rendering.Composition;
@@ -18,7 +19,7 @@ public sealed class CompositionEngine : IDisposable
     /// Render a frame at the given timestamp for the given canvas.
     /// Returns a composited frame description (GPU textures in production).
     /// </summary>
-    public CompositedFrame Compose(Project project, TimeStamp timestamp)
+    public CompositedFrame Compose(AreaCutProject project, TimeStamp timestamp)
     {
         ObjectDisposedException.ThrowIf(_disposed, this);
 

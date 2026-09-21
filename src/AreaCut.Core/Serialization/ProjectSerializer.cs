@@ -1,3 +1,5 @@
+using AreaCutProject = AreaCut.Core.ProjectModel.AreaCutProject;
+using AreaCut.Core.ProjectModel;
 using System;
 using System.IO;
 using System.Text.Json;
@@ -5,8 +7,6 @@ using System.Text.Json.Serialization;
 using System.Threading;
 using System.Threading.Tasks;
 using AreaCut.Core.Models;
-using AreaCut.Core.Project;
-using ProjectModel = AreaCut.Core.Project.Project;
 using AreaCut.Core.Time;
 
 namespace AreaCut.Core.Serialization;
@@ -29,7 +29,7 @@ public sealed class ProjectSerializer
     public const int CurrentFormatVersion = 1;
 
     /// <summary>Save a project to a .areacut file atomically.</summary>
-    public async Task SaveAsync(ProjectModel project, string filePath, CancellationToken ct = default)
+    public async Task SaveAsync(AreaCutProject project, string filePath, CancellationToken ct = default)
     {
         var document = ProjectDocument.FromProject(project);
         var json = JsonSerializer.Serialize(document, JsonOptions);
@@ -45,7 +45,7 @@ public sealed class ProjectSerializer
     }
 
     /// <summary>Load a project from a .areacut file.</summary>
-    public async Task<ProjectModel> LoadAsync(string filePath, CancellationToken ct = default)
+    public async Task<AreaCutProject> LoadAsync(string filePath, CancellationToken ct = default)
     {
         var json = await File.ReadAllTextAsync(filePath, ct).ConfigureAwait(false);
         var document = JsonSerializer.Deserialize<ProjectDocument>(json, JsonOptions)
@@ -92,7 +92,7 @@ public sealed class ProjectDocument
     public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
     public DateTime ModifiedAt { get; set; } = DateTime.UtcNow;
 
-    public static ProjectDocument FromProject(ProjectModel project) => new()
+    public static ProjectDocument FromProject(AreaCutProject project) => new()
     {
         Name = project.Name,
         Canvas = ProjectDocumentCanvas.FromCanvas(project.Canvas),
@@ -107,9 +107,9 @@ public sealed class ProjectDocument
         ModifiedAt = project.ModifiedAt,
     };
 
-    public ProjectModel ToProject()
+    public AreaCutProject ToProject()
     {
-        var project = new ProjectModel
+        var project = new AreaCutProject
         {
             Name = Name,
             Canvas = Canvas.ToCanvas(),

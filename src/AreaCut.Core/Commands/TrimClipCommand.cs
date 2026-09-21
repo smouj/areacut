@@ -1,7 +1,7 @@
 using System;
+using AreaCutProject = AreaCut.Core.ProjectModel.AreaCutProject;
 using AreaCut.Core.Time;
 using AreaCut.Core.Models;
-using ProjectModel = AreaCut.Core.Project.Project;
 
 namespace AreaCut.Core.Commands;
 
@@ -11,7 +11,7 @@ namespace AreaCut.Core.Commands;
 /// </summary>
 public sealed class TrimClipCommand : ICommand
 {
-    private readonly ProjectModel _project;
+    private readonly AreaCutProject _project;
     private readonly string _clipId;
     private readonly TimeStamp? _newSourceIn;
     private readonly TimeStamp? _newSourceOut;
@@ -22,7 +22,7 @@ public sealed class TrimClipCommand : ICommand
 
     public string Description => $"Trim clip '{_clipId}'";
 
-    public TrimClipCommand(ProjectModel project, string clipId,
+    public TrimClipCommand(AreaCutProject project, string clipId,
         TimeStamp? newSourceIn = null, TimeStamp? newSourceOut = null, TimeStamp? newTimelineStart = null)
     {
         _project = project ?? throw new ArgumentNullException(nameof(project));

@@ -1,6 +1,6 @@
+using AreaCutProject = AreaCut.Core.ProjectModel.AreaCutProject;
+using AreaCut.Core.ProjectModel;
 using AreaCut.Core.Models;
-using AreaCut.Core.Project;
-using ProjectModel = AreaCut.Core.Project.Project;
 using AreaCut.Core.Time;
 using Xunit;
 
@@ -11,7 +11,7 @@ public class ProjectTests
     [Fact]
     public void NewProject_HasDefaultTracks()
     {
-        var project = new ProjectModel { Name = "Test" };
+        var project = new AreaCutProject { Name = "Test" };
         project.Tracks.Add(new Track(TrackKind.Video, "Video 1"));
         project.Tracks.Add(new Track(TrackKind.Audio, "Audio 1"));
 
@@ -22,7 +22,7 @@ public class ProjectTests
     [Fact]
     public void TimelineDuration_CalculatesFromClips()
     {
-        var project = new ProjectModel { Name = "Test" };
+        var project = new AreaCutProject { Name = "Test" };
         var track = new Track(TrackKind.Video, "Video 1");
         project.Tracks.Add(track);
 
@@ -41,7 +41,7 @@ public class ProjectTests
     [Fact]
     public void FindClip_Works()
     {
-        var project = new ProjectModel();
+        var project = new AreaCutProject();
         var clip = new Clip("m1", "t1");
         project.Clips.Add(clip);
 
@@ -53,7 +53,7 @@ public class ProjectTests
     [Fact]
     public void FindMedia_Works()
     {
-        var project = new ProjectModel();
+        var project = new AreaCutProject();
         var media = new MediaReference("/path/to/video.mp4", MediaKind.Video);
         project.Media.Add(media);
 

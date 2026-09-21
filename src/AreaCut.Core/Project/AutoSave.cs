@@ -15,7 +15,7 @@ public sealed class AutoSave : IDisposable
 {
     private readonly ProjectSerializer _serializer = new();
     private Timer? _timer;
-    private Project? _currentProject;
+    private AreaCutProject? _currentProject;
     private string? _projectPath;
     private bool _disposed;
 
@@ -23,7 +23,7 @@ public sealed class AutoSave : IDisposable
     public event EventHandler<string>? RecoveryCreated;
 
     /// <summary>Start auto-saving a project at the given interval.</summary>
-    public void Start(Project project, string projectPath, int intervalSeconds = 120)
+    public void Start(AreaCutProject project, string projectPath, int intervalSeconds = 120)
     {
         Stop();
         _currentProject = project;
@@ -74,7 +74,7 @@ public sealed class AutoSave : IDisposable
         => File.Exists(GetRecoveryPath(projectPath));
 
     /// <summary>Load from recovery file if it exists, otherwise from main file.</summary>
-    public async Task<Project> LoadWithRecoveryAsync(string projectPath)
+    public async Task<AreaCutProject> LoadWithRecoveryAsync(string projectPath)
     {
         var recoveryPath = GetRecoveryPath(projectPath);
         if (File.Exists(recoveryPath))

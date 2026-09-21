@@ -1,6 +1,6 @@
 using System;
+using AreaCutProject = AreaCut.Core.ProjectModel.AreaCutProject;
 using AreaCut.Core.Models;
-using ProjectModel = AreaCut.Core.Project.Project;
 
 namespace AreaCut.Core.Commands;
 
@@ -10,14 +10,14 @@ namespace AreaCut.Core.Commands;
 /// </summary>
 public sealed class TransformClipCommand : ICommand
 {
-    private readonly ProjectModel _project;
+    private readonly AreaCutProject _project;
     private readonly string _clipId;
     private readonly Transform _newTransform;
     private Transform _oldTransform = Transform.Identity;
 
     public string Description => $"Transform clip '{_clipId}'";
 
-    public TransformClipCommand(ProjectModel project, string clipId, Transform newTransform)
+    public TransformClipCommand(AreaCutProject project, string clipId, Transform newTransform)
     {
         _project = project ?? throw new ArgumentNullException(nameof(project));
         _clipId = clipId ?? throw new ArgumentNullException(nameof(clipId));

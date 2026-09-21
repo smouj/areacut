@@ -1,6 +1,6 @@
 using System;
+using AreaCutProject = AreaCut.Core.ProjectModel.AreaCutProject;
 using AreaCut.Core.Models;
-using ProjectModel = AreaCut.Core.Project.Project;
 
 namespace AreaCut.Core.Commands;
 
@@ -10,14 +10,14 @@ namespace AreaCut.Core.Commands;
 /// </summary>
 public sealed class ChangeVolumeCommand : ICommand
 {
-    private readonly ProjectModel _project;
+    private readonly AreaCutProject _project;
     private readonly string _clipId;
     private readonly double _newVolume;
     private double _oldVolume;
 
     public string Description => $"Change volume of clip '{_clipId}'";
 
-    public ChangeVolumeCommand(ProjectModel project, string clipId, double newVolume)
+    public ChangeVolumeCommand(AreaCutProject project, string clipId, double newVolume)
     {
         _project = project ?? throw new ArgumentNullException(nameof(project));
         _clipId = clipId ?? throw new ArgumentNullException(nameof(clipId));
