@@ -7,156 +7,117 @@
   <em>Cut. Reframe. Caption. Export.</em>
 </p>
 
-AreaCut is a minimal, local-first Windows video editor built for social content creators. It turns desktop recordings and videos into Instagram Reels, TikToks, YouTube Shorts, and standard videos — without accounts, cloud, telemetry, or complexity.
+<p align="center">
+  <img src="assets/social-banner.png" alt="AreaCut — Cut. Reframe. Caption. Export." width="680">
+</p>
 
-The visual identity is documented in [assets/BRAND.md](assets/BRAND.md). The repository ships the generated raster lockup, social banner, transparent mark, and Windows `.ico` application icon used by the app and release scripts.
+<p align="center">
+  <img src="https://img.shields.io/badge/platform-Windows%2010%20%7C%2011%20x64-blue?style=flat-square" alt="Platform: Windows 10/11 x64">
+  <img src="https://img.shields.io/badge/engine-.NET%208-512bd4?style=flat-square" alt="Engine: .NET 8">
+  <img src="https://img.shields.io/badge/interface-WinUI%203-0067c0?style=flat-square" alt="Interface: WinUI 3">
+  <img src="https://img.shields.io/badge/license-MIT-green?style=flat-square" alt="License: MIT">
+  <img src="https://img.shields.io/badge/status-pre--alpha-orange?style=flat-square" alt="Status: pre-alpha">
+</p>
 
-Designed as the editing companion to [AreaRec](https://github.com/smouj/arearec):
+**AreaCut** is a minimal, local-first video editor for Windows, built for social content. It turns desktop recordings and videos into Instagram Reels, TikToks, YouTube Shorts and standard landscape video — entirely on your own machine. No account, no cloud, no telemetry, no uploads.
 
-```
-AreaRec = capture
-AreaCut = edit + compose + export
-```
+It is the editing half of the Area family:
 
-Both are independent applications. AreaCut opens a recording from AreaRec in one click, but neither depends on the other.
+| App | Job |
+| --- | --- |
+| [**AreaRec**](https://github.com/smouj/arearec) | Select a region. Record it. Get an MP4. |
+| **AreaCut** | Cut it, reframe it, caption it, export it. |
+
+The two are independent applications. AreaCut opens any video you already have, and it is designed to pick up a recording handed over by AreaRec — but neither requires the other.
+
+> ### ⚠️ Pre-alpha — not usable for real editing yet
+>
+> The editing engine is written and covered by unit tests, but the WinUI 3 interface is still a shell: **there is no public build to download and no working export yet.** Everything marked *planned* below does not exist. Live state is in [Status](#status) and the [roadmap](docs/development/roadmap.md).
+
+## Contents
+
+- [Status](#status)
+- [Features](#features)
+- [Requirements](#requirements)
+- [Download and install](#download-and-install)
+- [Run from source](#run-from-source)
+- [Documentation](#documentation)
+- [Privacy](#privacy)
+- [License](#license)
+
+## Status
+
+| Area | State |
+| --- | --- |
+| Project model, timeline, clips, undo/redo, `.areacut` save format | ✅ implemented, unit-tested |
+| Social presets, safe areas, SRT captions, caption presets | ✅ implemented, unit-tested |
+| WinUI 3 shell — window, layout, keyboard handling | 🚧 shell only |
+| Media Foundation decode and metadata probing | 🚧 stubbed |
+| GPU preview (D3D11 / D2D) | 🚧 stubbed |
+| Functional timeline UI — import, trim, split inside the app | ⛔ not started |
+| H.264/AAC MP4 export | ⛔ not started |
+| Audio playback and mixing (WASAPI) | ⛔ not started |
+| AreaRec → AreaCut handover | ⛔ not started ([planned for v0.4](docs/development/roadmap.md)) |
 
 ## Features
 
-- **Non-destructive editing** — original files are never modified
-- **Real-time preview** with GPU-accelerated compositing (D3D11/D2D)
-- **Timeline** with video, audio, text, and caption tracks
-- **Split, trim, move** clips with keyboard shortcuts (S, Delete, Ctrl+Z/Y)
-- **Social presets** — Vertical 9:16, Instagram 4:5, Square 1:1, YouTube 16:9
-- **Reframe** — visually adjust crop/scale for any aspect ratio
-- **Safe areas** — TikTok, Instagram Reels, YouTube Shorts overlays
-- **Auto Short** — one-click project setup for any platform
-- **Captions** — import SRT, edit, style with presets
-- **Local transcription** — optional Whisper-compatible runtime, no API
-- **Text overlays** — fonts, colors, shadows, outlines via DirectWrite
-- **Audio mixing** — video audio + music + additional track, with fades
-- **Speed control** — 0.5×, 1×, 1.5×, 2× (custom values supported)
-- **Transitions** — Cut, Crossfade, Fade to black
-- **Proxy workflow** — edit on 720p proxies, export from originals
-- **Export** — H.264/AAC MP4 via Media Foundation, hardware encoding when available
-- **Undo/Redo** — Command Pattern from day one, Ctrl+Z / Ctrl+Y
+*Target set for v0.1–v0.3 — see [Status](#status) for what exists today.*
+
+- **Non-destructive editing** — source files are never modified; the project stores cuts, transforms and references only
+- **Social presets** — vertical 9:16, Instagram 4:5, square 1:1, YouTube 16:9, Discord 720p
+- **Safe areas** — TikTok, Instagram Reels and YouTube Shorts overlays
+- **Timeline** — video, audio, text and caption tracks, with snapping to clip edges, playhead and frame grid
+- **Split, trim, move, delete** clips, with full undo/redo
+- **Reframe** — adjust crop and scale for any aspect ratio
+- **Captions** — import and export SRT, style with presets, optional local transcription
+- **Text overlays** — fonts, colours, shadows and outlines via DirectWrite
+- **Audio mixing** — video audio plus music and an extra track, with fades and volume
+- **Export** — H.264/AAC MP4 through Media Foundation, hardware encoding when available
 - **Autosave** with crash recovery
-- **Single instance** — reopens in existing window
-- **No FFmpeg dependency** — native Windows APIs throughout
-- **No Electron, no WebView** — pure WinUI 3
+- **No FFmpeg, no Electron, no WebView** — Windows-native APIs and WinUI 3 throughout
 
 ## Requirements
 
-- Windows 10 version 19041+ or Windows 11
-- .NET 8 SDK for development
-- Direct3D 11 capable GPU (software fallback available)
+- Windows 10 (2004 / build 19041) or Windows 11, x64
+- Direct3D 11 capable GPU — a software fallback exists
 - Media Foundation (included in Windows)
+- .NET 8 SDK — only if you build from source
 
-## Build
+## Download and install
+
+**There is no public build yet.** The first portable release will be published under [Releases](https://github.com/smouj/areacut/releases) as a self-contained `AreaCut-win-x64.zip` with a SHA-256 checksum, plus a screenshot walkthrough.
+
+## Run from source
+
+The WinUI 3 application project must be built from a native Windows path. From Windows PowerShell:
 
 ```powershell
+git clone https://github.com/smouj/areacut
+cd areacut
 .\scripts\BUILD.ps1
+dotnet run --project src\AreaCut.App\AreaCut.App.csproj
 ```
 
-## Run
+Full build, test and packaging details: [docs/development/building.md](docs/development/building.md).
 
-```powershell
-dotnet run --project src/AreaCut.App/AreaCut.App.csproj
-```
+## Documentation
 
-## Test
-
-```powershell
-.\scripts\TEST.ps1
-```
-
-## Publish
-
-```powershell
-.\scripts\PUBLISH_PORTABLE.ps1
-```
-
-Creates a self-contained `AreaCut-win-x64.zip` in `artifacts/`.
-
-## Install
-
-```powershell
-.\scripts\INSTALL_PORTABLE.ps1
-```
-
-Installs to `%LOCALAPPDATA%\Programs\AreaCut` with Start Menu shortcut.
-
-## AreaRec Integration
-
-After recording with AreaRec:
-
-```
-AreaRec → Stop recording → "Open in AreaCut"
-```
-
-AreaCut accepts a video file via command line:
-
-```
-AreaCut.exe "C:\path\to\recording.mp4"
-```
-
-This creates a new project, imports the video, and places it on the timeline.
-
-## Project Format
-
-AreaCut saves projects as `.areacut` files — versioned JSON that stores:
-
-- Canvas dimensions, FPS
-- Track layout
-- Clip references (source path, in/out, transforms)
-- Text overlays and captions
-- Transitions and effects
-- Settings
-
-Original media files are never modified.
-
-## Architecture
-
-```
-AreaCut.App          WinUI 3 UI, views, view models, keyboard, drag-drop
-AreaCut.Core         Project, timeline, clips, commands, undo, serialization
-AreaCut.Media         Media Foundation decode, metadata, thumbnails, waveforms
-AreaCut.Rendering     D3D11/D2D composition, preview clock, text rendering
-AreaCut.Audio         WASAPI playback, mixing, waveform cache
-AreaCut.Export        H.264/AAC encoder pipeline, presets, progress
-AreaCut.Transcription SRT parsing, caption presets, local Whisper (optional)
-```
-
-Dependency direction: App → Core ← Media, Rendering, Audio, Export, Transcription
-
-The UI never contains core editor logic. Each library has a clear boundary.
-
-## Keyboard Shortcuts
-
-| Key | Action |
-|-----|--------|
-| Space | Play / Pause |
-| S | Split at playhead |
-| Delete | Delete selected clip |
-| Ctrl+Z | Undo |
-| Ctrl+Y | Redo |
-| Ctrl+S | Save |
-| Ctrl+Shift+S | Save As |
-| Ctrl+O | Open |
-| Ctrl+E | Export |
-| ← | Previous frame |
-| → | Next frame |
-| J | Reverse playback |
-| K | Pause |
-| L | Forward playback |
+| Audience | Start here |
+| --- | --- |
+| Users | [docs/user/install.md](docs/user/install.md) · [supported formats](docs/user/supported-formats.md) · [shortcuts](docs/user/shortcuts.md) · [privacy](docs/user/privacy.md) |
+| Contributors | [CONTRIBUTING.md](CONTRIBUTING.md) · [docs/development/testing.md](docs/development/testing.md) · [docs/development/building.md](docs/development/building.md) |
+| Architecture | [docs/development/architecture.md](docs/development/architecture.md) · [project format](docs/development/project-format.md) |
+| Full index | [docs/README.md](docs/README.md) |
 
 ## Privacy
 
-AreaCut does not make network requests. Project files and media stay on your machine. No telemetry, no analytics, no accounts.
+AreaCut makes no network requests. No telemetry, no analytics, no accounts, no cloud storage. Project files and media stay on your disk. Details: [docs/user/privacy.md](docs/user/privacy.md).
 
 ## License
 
-MIT — see [LICENSE](LICENSE).
+MIT — see [LICENSE](LICENSE). Brand assets and their terms: [assets/BRAND.md](assets/BRAND.md).
 
 ## Related
 
-- [AreaRec](https://github.com/smouj/arearec) — Select a region. Record it. Get an MP4.
+- [AreaRec](https://github.com/smouj/arearec) — the capture half of the family
+- [github.com/smouj](https://github.com/smouj) — the rest of the desktop suite

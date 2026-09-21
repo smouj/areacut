@@ -2,7 +2,18 @@
 
 All notable changes to AreaCut are documented here.
 
-## [0.1.0] - 2025-09-21
+## [Unreleased]
+
+### Changed
+- Documentation restructured by audience: `docs/user/` for users, `docs/development/` for contributors and internals
+- README rewritten as a product page; technical detail moved into `docs/`
+- `docs/README.md` added as the documentation index
+- Roadmap and architecture now state implementation status explicitly instead of describing planned behaviour as if it existed
+
+### Fixed
+- Corrected the `[0.1.0]` release date (was recorded as 2025)
+
+## [0.1.0] - 2026-09-21
 
 ### Added
 - Solution scaffold with 7 projects (App, Core, Media, Rendering, Audio, Export, Transcription)

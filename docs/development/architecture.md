@@ -24,7 +24,7 @@ AreaCut.App (WinUI 3 shell, views, view models, keyboard, drag-drop)
 
 | Project | Responsibility |
 |---------|---------------|
-| `AreaCut.App` | WinUI 3 shell, MainWindow, keyboard shortcuts, drag-drop, single instance |
+| `AreaCut.App` | WinUI 3 shell, MainWindow, keyboard shortcuts. Drag-drop, functional clip selection and single-instance redirection are not implemented yet. |
 | `AreaCut.Core` | Project model, timeline, clips, tracks, commands, undo/redo, serialization, time math |
 | `AreaCut.Media` | Media Foundation runtime, capabilities, source reader, metadata probing, thumbnails, waveforms |
 | `AreaCut.Rendering` | D3D11 device, composition engine, preview clock, text/caption rendering |
@@ -78,10 +78,18 @@ Atomic saves via temp file + rename. Crash recovery via `.recovery` sidecar.
 
 ## AreaRec Integration
 
-AreaCut accepts a video file on the command line:
+**Status: not wired up yet.** The intended contract is a command-line handover:
 
 ```
 AreaCut.exe "C:\path\to\recording.mp4"
 ```
 
-This creates a new project, imports the video, and places it on the timeline. No shared code between AreaRec and AreaCut — integration is via command-line invocation only.
+`Program.cs` already validates the extension and calls `App.OpenVideoDirectly`,
+which builds a project, adds a `MediaReference` and places a clip on the first
+video track. Two pieces are missing: the `MainWindow` created in `OnLaunched`
+never receives that project, and running AreaCut while another instance is open
+exits instead of redirecting the file to the existing window. Tracked for v0.4 in
+[roadmap.md](roadmap.md).
+
+No shared code between the two applications — the integration is a process
+boundary, by design.
