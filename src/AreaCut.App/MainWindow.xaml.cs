@@ -18,7 +18,7 @@ namespace AreaCut.App;
 public sealed partial class MainWindow : Window
 {
     private readonly App _app;
-    private AreaCutAreaCutProject? _project;
+    private AreaCutProject? _project;
     private UndoRedoStack? _undoRedo;
     private PreviewClock? _clock;
 
