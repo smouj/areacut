@@ -1,29 +1,13 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" width="1024" height="1024">
-  <rect width="1024" height="1024" rx="0" fill="#0F0F12"/>
-  <!-- Corner brackets — same as AreaRec but thicker for video editor feel -->
-  <g stroke="#FFFFFF" stroke-width="32" fill="none" stroke-linecap="square" stroke-linejoin="miter">
-    <!-- Top-left bracket -->
-    <path d="M180,280 L180,180 L280,180"/>
-    <!-- Top-right bracket -->
-    <path d="M744,180 L844,180 L844,280"/>
-    <!-- Bottom-left bracket -->
-    <path d="M180,744 L180,844 L280,844"/>
-    <!-- Bottom-right bracket -->
-    <path d="M744,844 L844,844 L844,744"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" role="img" aria-labelledby="title desc">
+  <title id="title">AreaCut</title>
+  <desc id="desc">Four crop-frame corners around a diagonal coral cut mark.</desc>
+  <rect width="1024" height="1024" fill="#0F0F12"/>
+  <g fill="none" stroke="#F4F1EA" stroke-width="42" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M184 300V184h116"/>
+    <path d="M724 184h116v116"/>
+    <path d="M184 724v116h116"/>
+    <path d="M724 840h116V724"/>
   </g>
-  <!-- Scissors: clean geometric design -->
-  <g fill="#FFFFFF">
-    <!-- Upper-left blade -->
-    <path d="M430,330 L470,330 L580,530 L540,530 Z"/>
-    <!-- Upper-right blade -->  
-    <path d="M554,330 L594,330 L484,530 L444,530 Z"/>
-    <!-- Pivot dot -->
-    <circle cx="512" cy="430" r="18" fill="#0F0F12" stroke="#FFFFFF" stroke-width="8"/>
-    <!-- Lower-left handle -->
-    <path d="M440,560 L480,560 L480,660 Q480,700 440,700 Q400,700 400,660 L400,560 Z" fill="none" stroke="#FFFFFF" stroke-width="24"/>
-    <!-- Lower-right handle -->
-    <path d="M544,560 L584,560 L584,660 Q584,700 544,700 Q504,700 504,660 L504,560 Z" fill="none" stroke="#FFFFFF" stroke-width="24"/>
-  </g>
-  <!-- Text -->
-  <text x="512" y="920" text-anchor="middle" font-family="'Segoe UI', 'Helvetica Neue', Arial, sans-serif" font-size="84" font-weight="700" fill="#FFFFFF" letter-spacing="4">AreaCut</text>
+  <path d="M356 684 668 372" stroke="#FF6B5F" stroke-width="52" stroke-linecap="round"/>
+  <text x="512" y="946" text-anchor="middle" fill="#F4F1EA" font-family="Segoe UI, Arial, sans-serif" font-size="96" font-weight="700" letter-spacing="3">AreaCut</text>
 </svg>

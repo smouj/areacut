@@ -9,6 +9,8 @@
 
 AreaCut is a minimal, local-first Windows video editor built for social content creators. It turns desktop recordings and videos into Instagram Reels, TikToks, YouTube Shorts, and standard videos — without accounts, cloud, telemetry, or complexity.
 
+The visual identity is documented in [assets/BRAND.md](assets/BRAND.md). The repository ships the generated raster lockup, social banner, transparent mark, and Windows `.ico` application icon used by the app and release scripts.
+
 Designed as the editing companion to [AreaRec](https://github.com/smouj/arearec):
 
 ```

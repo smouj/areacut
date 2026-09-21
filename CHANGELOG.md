@@ -39,3 +39,5 @@ All notable changes to AreaCut are documented here.
 - Build, Test, Publish, Install PowerShell scripts
 - README, LICENSE, .editorconfig, .gitignore
 - Architecture, Media Pipeline, Timeline, Project Format, Export Pipeline, Performance, Testing, Privacy, Roadmap docs
+- Generated AreaCut brand kit: mark, lockup, social banner, and Windows application icon
+- Brand assets use a warm-ivory crop frame with a coral cut accent to distinguish the editor from AreaRec's recording red

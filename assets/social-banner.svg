@@ -1,29 +1,26 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 640" width="1280" height="640">
-  <rect width="1280" height="640" fill="#0F0F12"/>
-  <!-- Subtle grid -->
-  <g stroke="#1A1A1E" stroke-width="1">
-    <line x1="0" y1="0" x2="1280" y2="640"/>
-    <line x1="0" y1="640" x2="1280" y2="0"/>
-    <line x1="640" y1="0" x2="640" y2="640"/>
-    <line x1="0" y1="320" x2="1280" y2="320"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900" role="img" aria-labelledby="title desc">
+  <title id="title">AreaCut social banner</title>
+  <desc id="desc">AreaCut local-first video editor branding.</desc>
+  <rect width="1600" height="900" fill="#0F0F12"/>
+  <g stroke="#17171B" stroke-width="1">
+    <path d="M0 80h1600M0 160h1600M0 240h1600M0 320h1600M0 400h1600M0 480h1600M0 560h1600M0 640h1600M0 720h1600M0 800h1600"/>
+    <path d="M80 0v900M160 0v900M240 0v900M320 0v900M400 0v900M480 0v900M560 0v900M640 0v900M720 0v900M800 0v900M880 0v900M960 0v900M1040 0v900M1120 0v900M1200 0v900M1280 0v900M1360 0v900M1440 0v900M1520 0v900"/>
   </g>
-  <!-- Corner brackets -->
-  <g stroke="#FFFFFF" stroke-width="40" fill="none" stroke-linecap="square" stroke-linejoin="miter">
-    <path d="M380,160 L380,60 L480,60"/>
-    <path d="M800,60 L900,60 L900,160"/>
-    <path d="M380,480 L380,580 L480,580"/>
-    <path d="M800,580 L900,580 L900,480"/>
+  <ellipse cx="260" cy="460" rx="720" ry="720" fill="none" stroke="#24242A" stroke-width="2"/>
+  <rect x="1110" y="110" width="370" height="680" rx="36" fill="none" stroke="#25252B" stroke-width="2"/>
+  <g fill="none" stroke="#F4F1EA" stroke-width="42" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M190 300V190h110"/>
+    <path d="M510 190h110v110"/>
+    <path d="M190 510v110h110"/>
+    <path d="M510 620h110V510"/>
   </g>
-  <!-- Scissors center -->
-  <g fill="#FFFFFF">
-    <path d="M580,230 L620,230 L680,370 L640,370 Z"/>
-    <path d="M660,230 L700,230 L640,370 L600,370 Z"/>
-    <circle cx="640" cy="300" r="14" fill="#0F0F12" stroke="#FFFFFF" stroke-width="6"/>
-    <path d="M610,390 L630,390 L630,460 Q630,480 610,480 Q590,480 590,460 L590,390 Z" fill="none" stroke="#FFFFFF" stroke-width="18"/>
-    <path d="M650,390 L670,390 L670,460 Q670,480 650,480 Q630,480 630,460 L630,390 Z" fill="none" stroke="#FFFFFF" stroke-width="18"/>
-  </g>
-  <!-- Title -->
-  <text x="640" y="520" text-anchor="middle" font-family="'Segoe UI', 'Helvetica Neue', Arial, sans-serif" font-size="72" font-weight="700" fill="#FFFFFF" letter-spacing="6">AreaCut</text>
-  <!-- Tagline -->
-  <text x="640" y="570" text-anchor="middle" font-family="'Segoe UI', 'Helvetica Neue', Arial, sans-serif" font-size="22" font-weight="400" fill="#888888" letter-spacing="3">CUT · REFRAIN · CAPTION · EXPORT</text>
+  <path d="M300 570 500 370" stroke="#FF6B5F" stroke-width="48" stroke-linecap="round"/>
+  <text x="190" y="720" fill="#F4F1EA" font-family="Segoe UI, Arial, sans-serif" font-size="104" font-weight="700">AreaCut</text>
+  <text x="194" y="778" fill="#FF6B5F" font-family="Segoe UI, Arial, sans-serif" font-size="30" letter-spacing="2">CUT  ·  REFRAME  ·  CAPTION  ·  EXPORT</text>
+  <text x="1110" y="185" fill="#77777F" font-family="Segoe UI, Arial, sans-serif" font-size="24">FOCUS</text>
+  <text x="1110" y="285" fill="#F4F1EA" font-family="Segoe UI, Arial, sans-serif" font-size="56" font-weight="700">EDIT</text>
+  <rect x="1110" y="330" width="325" height="120" rx="24" fill="#15151A" stroke="#2B2B33" stroke-width="2"/>
+  <circle cx="1170" cy="390" r="22" fill="#FF6B5F"/>
+  <text x="1220" y="400" fill="#F4F1EA" font-family="Segoe UI, Arial, sans-serif" font-size="30" font-weight="700">LOCAL-FIRST</text>
+  <text x="1110" y="700" fill="#6E6E77" font-family="Segoe UI, Arial, sans-serif" font-size="20" letter-spacing="1">NO CLOUD  ·  NO TELEMETRY</text>
 </svg>
