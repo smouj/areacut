@@ -1,7 +1,8 @@
+using AreaCut.Core.ProjectModel;
 using System;
 using System.Threading;
 using System.Threading.Tasks;
-using AreaCut.Core.Project;
+using AreaCut.Export.Encoder;
 using AreaCut.Core.Time;
 using AreaCut.Export.Encoder;
 using AreaCut.Export.Presets;

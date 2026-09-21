@@ -1,6 +1,6 @@
+using AreaCut.Core.ProjectModel;
 using System;
 using System.Runtime.InteropServices;
-using AreaCut.Core.Project;
 using AreaCut.Export.Presets;
 
 namespace AreaCut.Export.Encoder;

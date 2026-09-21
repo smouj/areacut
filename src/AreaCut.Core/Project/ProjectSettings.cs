@@ -1,4 +1,4 @@
-namespace AreaCut.Core.Project;
+namespace AreaCut.Core.ProjectModel;
 
 /// <summary>
 /// Project-level settings that affect export and behavior.

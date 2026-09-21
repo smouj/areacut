@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using AreaCut.Core.Models;
 using AreaCut.Core.Time;
 
-namespace AreaCut.Core.Project;
+namespace AreaCut.Core.ProjectModel;
 
 /// <summary>
 /// The complete non-destructive project state.
@@ -12,7 +12,7 @@ namespace AreaCut.Core.Project;
 /// </summary>
 public sealed class Project
 {
-    public string Id { get; } = Guid.NewGuid().ToString("N");
+    public string Id { get; set; } = Guid.NewGuid().ToString("N");
     public string Name { get; set; } = "Untitled";
     public CanvasSpec Canvas { get; set; } = CanvasSpec.Vertical1080;
     public ProjectSettings Settings { get; set; } = new();

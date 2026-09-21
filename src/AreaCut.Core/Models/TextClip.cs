@@ -8,7 +8,7 @@ namespace AreaCut.Core.Models;
 /// </summary>
 public sealed class TextClip
 {
-    public string Id { get; } = Guid.NewGuid().ToString("N");
+    public string Id { get; set; } = Guid.NewGuid().ToString("N");
     public string Content { get; set; } = string.Empty;
     public string TrackId { get; set; }
 

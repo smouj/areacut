@@ -9,7 +9,7 @@ namespace AreaCut.Core.Models;
 /// </summary>
 public sealed class Clip
 {
-    public string Id { get; } = Guid.NewGuid().ToString("N");
+    public string Id { get; set; } = Guid.NewGuid().ToString("N");
     public string SourceMediaId { get; set; }
 
     /// <summary>In point in the source media.</summary>

@@ -1,3 +1,4 @@
+using AreaCut.Core.ProjectModel;
 using System;
 
 namespace AreaCut.Core.Serialization;

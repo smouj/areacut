@@ -7,6 +7,7 @@
     <IsPackable>false</IsPackable>
     <RootNamespace>AreaCut.Export.Tests</RootNamespace>
     <EnableWindowsTargeting>true</EnableWindowsTargeting>
+    <RuntimeIdentifier>win-x64</RuntimeIdentifier>
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.*" />

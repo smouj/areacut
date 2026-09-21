@@ -1,4 +1,4 @@
-namespace AreaCut.Core.Project;
+namespace AreaCut.Core.ProjectModel;
 
 /// <summary>
 /// Canvas specification: dimensions, frame rate, and aspect ratio.

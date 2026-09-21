@@ -1,8 +1,8 @@
+using AreaCut.Core.ProjectModel;
 using System;
 using System.Collections.ObjectModel;
 using AreaCut.Core.Commands;
 using AreaCut.Core.Models;
-using AreaCut.Core.Project;
 using AreaCut.Core.Time;
 using AreaCut.Core.Undo;
 using Microsoft.UI.Xaml;

@@ -4,7 +4,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using AreaCut.Core.Serialization;
 
-namespace AreaCut.Core.Project;
+namespace AreaCut.Core.ProjectModel;
 
 /// <summary>
 /// Periodic auto-save with crash recovery.

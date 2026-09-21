@@ -9,7 +9,6 @@
     <EnableWindowsTargeting>true</EnableWindowsTargeting>
     <RuntimeIdentifiers>win-x64</RuntimeIdentifiers>
     <ApplicationManifest>app.manifest</ApplicationManifest>
-    <ApplicationIcon>..\..\assets\AreaCut.ico</ApplicationIcon>
     <Nullable>enable</Nullable>
     <LangVersion>latest</LangVersion>
     <ImplicitUsings>enable</ImplicitUsings>

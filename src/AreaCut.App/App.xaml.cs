@@ -1,6 +1,6 @@
+using AreaCut.Core.ProjectModel;
 using System;
 using Microsoft.UI.Xaml;
-using AreaCut.Core.Project;
 using AreaCut.Core.Serialization;
 using AreaCut.Core.Undo;
 using AreaCut.Media.MediaFoundation;
