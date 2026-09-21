@@ -1,0 +1,148 @@
+<Window
+    x:Class="AreaCut.App.MainWindow"
+    xmlns="http://schemas.microsoft.com/winui/2024/xaml/present"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    Title="AreaCut">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>  <!-- Menu bar -->
+            <RowDefinition Height="*"/>      <!-- Main content -->
+            <RowDefinition Height="Auto"/>   <!-- Status bar -->
+        </Grid.RowDefinitions>
+
+        <!-- Menu bar -->
+        <MenuBar Grid.Row="0">
+            <MenuBarItem Title="File">
+                <MenuBarItem Title="New Project"/>
+                <MenuBarItem Title="Open..."/>
+                <MenuBarItem Title="Save"/>
+                <MenuBarItem Title="Save As..."/>
+                <MenuBarItem Title="---"/>
+                <MenuBarItem Title="Export..."/>
+            </MenuBarItem>
+            <MenuBarItem Title="Edit">
+                <MenuBarItem Title="Undo  Ctrl+Z"/>
+                <MenuBarItem Title="Redo  Ctrl+Y"/>
+            </MenuBarItem>
+            <MenuBarItem Title="View">
+                <MenuBarItem Title="Safe Areas"/>
+            </MenuBarItem>
+        </MenuBar>
+
+        <!-- Main content area: Media bin | Preview | Properties -->
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="240" MinWidth="180"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="260" MinWidth="200"/>
+            </Grid.ColumnDefinitions>
+
+            <!-- Left panel: Media bin -->
+            <Grid Grid.Column="0" Background="{ThemeResource CardBackgroundFillColorDefaultBrush}">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <TextBlock Grid.Row="0" Text="Media" Style="{StaticResource SubtitleTextBlockStyle}"
+                           Margin="16,12,16,8"/>
+                <ListView Grid.Row="1" x:Name="MediaListView"
+                          SelectionMode="Single"
+                          Padding="8"/>
+            </Grid>
+
+            <GridSplitter Grid.Column="1" Width="2"/>
+
+            <!-- Center: Preview -->
+            <Grid Grid.Column="2">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>       <!-- Preview canvas -->
+                    <RowDefinition Height="Auto"/>   <!-- Playback controls -->
+                </Grid.RowDefinitions>
+
+                <!-- Preview canvas -->
+                <Border Grid.Row="0" x:Name="PreviewCanvas"
+                        Background="#0F0F12"
+                        CornerRadius="4"
+                        Margin="8">
+                    <TextBlock Text="Drop a video to start editing"
+                               HorizontalAlignment="Center"
+                               VerticalAlignment="Center"
+                               Foreground="#666666"/>
+                </Border>
+
+                <!-- Playback controls -->
+                <StackPanel Grid.Row="1" Orientation="Horizontal"
+                            HorizontalAlignment="Center"
+                            Spacing="8"
+                            Margin="0,4,0,8">
+                    <Button x:Name="PreviousFrameButton" Content="&#xE76B;" FontFamily="Segoe MDL2 Assets"/>
+                    <Button x:Name="PlayPauseButton" Content="&#xE768;" FontFamily="Segoe MDL2 Assets" Width="48"/>
+                    <Button x:Name="NextFrameButton" Content="&#xE76C;" FontFamily="Segoe MDL2 Assets"/>
+                    <Button x:Name="SplitButton" Content="S" FontWeight="Bold"/>
+                    <TextBlock x:Name="TimecodeDisplay" Text="00:00:00.000"
+                               VerticalAlignment="Center"
+                               Margin="8,0,0,0"
+                               FontFamily="Consolas"/>
+                </StackPanel>
+            </Grid>
+
+            <GridSplitter Grid.Column="3" Width="2"/>
+
+            <!-- Right panel: Properties -->
+            <Grid Grid.Column="4" Background="{ThemeResource CardBackgroundFillColorDefaultBrush}">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <TextBlock Grid.Row="0" Text="Properties" Style="{StaticResource SubtitleTextBlockStyle}"
+                           Margin="16,12,16,8"/>
+                <ScrollViewer Grid.Row="1">
+                    <StackPanel x:Name="PropertiesPanel" Padding="16" Spacing="8"/>
+                </ScrollViewer>
+            </Grid>
+        </Grid>
+
+        <!-- Timeline at the bottom of the main content -->
+        <Border Grid.Row="1" VerticalAlignment="Bottom" Height="220" MinHeight="120"
+                Background="{ThemeResource CardBackgroundFillColorSecondaryBrush}"
+                CornerRadius="4" Margin="0,0,0,0">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <!-- Timeline header: track names + timecode ruler -->
+                <Border Grid.Row="0" Background="{ThemeResource CardBackgroundFillColorDefaultBrush}"
+                        Padding="8,4">
+                    <StackPanel Orientation="Horizontal" Spacing="16">
+                        <TextBlock Text="Timeline" Style="{StaticResource BodyStrongTextBlockStyle}"/>
+                        <TextBlock x:Name="ZoomLevel" Text="100%" VerticalAlignment="Center"
+                                   Foreground="{ThemeResource TextFillColorSecondaryBrush}"/>
+                    </StackPanel>
+                </Border>
+                <!-- Timeline tracks area -->
+                <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto"
+                              HorizontalScrollBarVisibility="Auto">
+                    <StackPanel x:Name="TimelineTracks" Spacing="2" Padding="4"/>
+                </ScrollViewer>
+            </Grid>
+        </Border>
+
+        <!-- Status bar -->
+        <Border Grid.Row="2" Background="{ThemeResource CardBackgroundFillColorDefaultBrush}"
+                Padding="16,4">
+            <Grid>
+                <TextBlock x:Name="StatusText" Text="Ready"
+                           VerticalAlignment="Center"
+                           Foreground="{ThemeResource TextFillColorSecondaryBrush}"/>
+                <TextBlock x:Name="ProjectInfoText" Text=""
+                           HorizontalAlignment="Right"
+                           VerticalAlignment="Center"
+                           Foreground="{ThemeResource TextFillColorSecondaryBrush}"/>
+            </Grid>
+        </Border>
+    </Grid>
+</Window>

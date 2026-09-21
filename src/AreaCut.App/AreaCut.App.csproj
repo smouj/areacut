@@ -1,0 +1,28 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <AssemblyName>AreaCut</AssemblyName>
+    <RootNamespace>AreaCut.App</RootNamespace>
+    <TargetFramework>net8.0-windows10.0.19041.0</TargetFramework>
+    <UseWinUI>true</UseWinUI>
+    <WindowsPackageType>None</WindowsPackageType>
+    <EnableWindowsTargeting>true</EnableWindowsTargeting>
+    <ApplicationManifest>app.manifest</ApplicationManifest>
+    <ApplicationIcon>..\..\assets\AreaCut.ico</ApplicationIcon>
+    <Nullable>enable</Nullable>
+    <LangVersion>latest</LangVersion>
+    <ImplicitUsings>enable</ImplicitUsings>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="Microsoft.WindowsAppSDK" Version="1.5.*" />
+    <PackageReference Include="Microsoft.Windows.SDK.BuildTools" Version="10.0.26100.*" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\AreaCut.Core\AreaCut.Core.csproj" />
+    <ProjectReference Include="..\AreaCut.Media\AreaCut.Media.csproj" />
+    <ProjectReference Include="..\AreaCut.Rendering\AreaCut.Rendering.csproj" />
+    <ProjectReference Include="..\AreaCut.Audio\AreaCut.Audio.csproj" />
+    <ProjectReference Include="..\AreaCut.Export\AreaCut.Export.csproj" />
+    <ProjectReference Include="..\AreaCut.Transcription\AreaCut.Transcription.csproj" />
+  </ItemGroup>
+</Project>

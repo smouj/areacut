@@ -1,0 +1,45 @@
+## Build results
+bin/
+obj/
+artifacts/
+publish/
+
+## .NET
+*.user
+*.suo
+*.cache
+*.vs/
+.vs/
+
+## Rider
+.idea/
+
+## VS Code
+.vscode/
+
+## NuGet
+*.nupkg
+packages/
+
+## OS
+.DS_Store
+Thumbs.db
+Desktop.ini
+
+## AreaCut project files (user data, not source)
+*.areacut
+!samples/**/*.areacut
+
+## Cache
+.cache/
+
+## Test results
+TestResults/
+
+## Publish
+*.zip
+*.sha256
+
+## Golden test media (large)
+tests/fixtures/*.mp4
+tests/fixtures/*.mov

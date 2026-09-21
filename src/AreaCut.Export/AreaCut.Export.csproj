@@ -1,0 +1,15 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <LangVersion>latest</LangVersion>
+    <RootNamespace>AreaCut.Export</RootNamespace>
+  </PropertyGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\AreaCut.Core\AreaCut.Core.csproj" />
+    <ProjectReference Include="..\AreaCut.Media\AreaCut.Media.csproj" />
+    <ProjectReference Include="..\AreaCut.Rendering\AreaCut.Rendering.csproj" />
+    <ProjectReference Include="..\AreaCut.Audio\AreaCut.Audio.csproj" />
+  </ItemGroup>
+</Project>
