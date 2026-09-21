@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 640" width="1280" height="640">
+  <rect width="1280" height="640" fill="#0F0F12"/>
+  <!-- Subtle grid -->
+  <g stroke="#1A1A1E" stroke-width="1">
+    <line x1="0" y1="0" x2="1280" y2="640"/>
+    <line x1="0" y1="640" x2="1280" y2="0"/>
+    <line x1="640" y1="0" x2="640" y2="640"/>
+    <line x1="0" y1="320" x2="1280" y2="320"/>
+  </g>
+  <!-- Corner brackets -->
+  <g stroke="#FFFFFF" stroke-width="40" fill="none" stroke-linecap="square" stroke-linejoin="miter">
+    <path d="M380,160 L380,60 L480,60"/>
+    <path d="M800,60 L900,60 L900,160"/>
+    <path d="M380,480 L380,580 L480,580"/>
+    <path d="M800,580 L900,580 L900,480"/>
+  </g>
+  <!-- Scissors center -->
+  <g fill="#FFFFFF">
+    <path d="M580,230 L620,230 L680,370 L640,370 Z"/>
+    <path d="M660,230 L700,230 L640,370 L600,370 Z"/>
+    <circle cx="640" cy="300" r="14" fill="#0F0F12" stroke="#FFFFFF" stroke-width="6"/>
+    <path d="M610,390 L630,390 L630,460 Q630,480 610,480 Q590,480 590,460 L590,390 Z" fill="none" stroke="#FFFFFF" stroke-width="18"/>
+    <path d="M650,390 L670,390 L670,460 Q670,480 650,480 Q630,480 630,460 L630,390 Z" fill="none" stroke="#FFFFFF" stroke-width="18"/>
+  </g>
+  <!-- Title -->
+  <text x="640" y="520" text-anchor="middle" font-family="'Segoe UI', 'Helvetica Neue', Arial, sans-serif" font-size="72" font-weight="700" fill="#FFFFFF" letter-spacing="6">AreaCut</text>
+  <!-- Tagline -->
+  <text x="640" y="570" text-anchor="middle" font-family="'Segoe UI', 'Helvetica Neue', Arial, sans-serif" font-size="22" font-weight="400" fill="#888888" letter-spacing="3">CUT · REFRAIN · CAPTION · EXPORT</text>
+</svg>
