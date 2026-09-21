@@ -1,0 +1,31 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  build:
+    runs-on: windows-latest
+    strategy:
+      matrix:
+        configuration: [Debug, Release]
+
+    steps:
+    - uses: actions/checkout@v4
+
+    - name: Setup .NET 8
+      uses: actions/setup-dotnet@v4
+      with:
+        dotnet-version: '8.0.x'
+
+    - name: Restore dependencies
+      run: dotnet restore AreaCut.sln --runtime win-x64
+
+    - name: Build
+      run: dotnet build AreaCut.sln --configuration ${{ matrix.configuration }} --no-restore
+
+    - name: Test
+      run: dotnet test tests/AreaCut.Core.Tests/AreaCut.Core.Tests.csproj --configuration ${{ matrix.configuration }} --no-restore --verbosity normal
