@@ -74,7 +74,29 @@ public sealed partial class MainWindow : Window
 
         UpdateProjectInfo();
         UpdateTimecode();
+        UpdateMediaBin();
         UpdateCommandStates();
+    }
+
+    /// <summary>
+    /// Shows the media the project references. This is also how an incoming
+    /// handover becomes visible: without it a forwarded file would load silently.
+    /// </summary>
+    private void UpdateMediaBin()
+    {
+        MediaListView.Items.Clear();
+        if (_project == null) return;
+
+        foreach (var media in _project.Media)
+        {
+            MediaListView.Items.Add(media.IsOffline
+                ? $"{media.FileName}  (missing)"
+                : media.FileName);
+        }
+
+        // A freshly handed-over file arrives as a single clip; make it the
+        // selection so the editing shortcuts have something to act on.
+        _selectedClipId = _project.Clips.Count > 0 ? _project.Clips[0].Id : null;
     }
 
     private void UpdateProjectInfo()

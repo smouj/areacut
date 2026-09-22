@@ -1,6 +1,10 @@
 using AreaCutProject = AreaCut.Core.ProjectModel.AreaCutProject;
 using AreaCut.Core.ProjectModel;
 using System;
+using System.IO;
+using System.IO.Pipes;
+using System.Threading;
+using System.Threading.Tasks;
 using Microsoft.UI.Xaml;
 using AreaCut.Core.Serialization;
 using Models = AreaCut.Core.Models;
@@ -18,10 +22,17 @@ public sealed partial class App : Microsoft.UI.Xaml.Application
     private UndoRedoStack? _undoRedo;
     private AreaCutProject? _currentProject;
     private AutoSave? _autoSave;
+    private MainWindow? _window;
+    private CancellationTokenSource? _handoffCancellation;
 
     public MediaFoundationRuntime MfRuntime => _mfRuntime ??= new();
     public UndoRedoStack UndoRedo => _undoRedo ??= new();
     public AreaCutProject? CurrentProject => _currentProject;
+
+    /// <summary>
+    /// Video handed over on the command line by AreaRec. Applied when the window exists.
+    /// </summary>
+    public string? PendingVideoPath { get; init; }
 
     public App()
     {
@@ -42,9 +53,68 @@ public sealed partial class App : Microsoft.UI.Xaml.Application
 
         // Create the main window and give it a project, so the shell opens in a
         // usable state instead of empty.
-        var window = new MainWindow();
-        window.Initialize(NewProject("Untitled"), UndoRedo);
-        window.Activate();
+        _window = new MainWindow();
+        var project = PendingVideoPath is not null
+            ? OpenVideoDirectly(PendingVideoPath)
+            : NewProject("Untitled");
+
+        _window.Initialize(project, UndoRedo);
+        _window.Activate();
+
+        StartHandoffListener();
+    }
+
+    /// <summary>
+    /// Listens for files forwarded by later launches. A second AreaCut process never
+    /// opens its own window: it sends the path here and exits.
+    /// </summary>
+    private void StartHandoffListener()
+    {
+        _handoffCancellation = new CancellationTokenSource();
+        var token = _handoffCancellation.Token;
+
+        _ = Task.Run(async () =>
+        {
+            while (!token.IsCancellationRequested)
+            {
+                try
+                {
+                    using var server = new NamedPipeServerStream(
+                        HandoffChannel.PipeName,
+                        PipeDirection.In,
+                        1,
+                        PipeTransmissionMode.Byte,
+                        PipeOptions.Asynchronous);
+
+                    await server.WaitForConnectionAsync(token).ConfigureAwait(false);
+
+                    using var reader = new StreamReader(server);
+                    var path = await reader.ReadLineAsync().ConfigureAwait(false);
+
+                    if (HandoffChannel.IsSupportedVideo(path))
+                    {
+                        var forwarded = path!;
+                        _window?.DispatcherQueue.TryEnqueue(() => ApplyHandoff(forwarded));
+                    }
+                }
+                catch (OperationCanceledException)
+                {
+                    break;
+                }
+                catch (Exception)
+                {
+                    // A broken connection must not kill the listener: keep serving.
+                }
+            }
+        }, token);
+    }
+
+    /// <summary>Opens a forwarded file in the window that is already open.</summary>
+    private void ApplyHandoff(string videoPath)
+    {
+        _currentProject = OpenVideoDirectly(videoPath);
+        _window?.Initialize(_currentProject, UndoRedo);
+        _window?.Activate();
     }
 
     /// <summary>Create a new project with the given canvas specification.</summary>
