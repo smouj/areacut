@@ -30,7 +30,7 @@ if ($LASTEXITCODE -ne 0) { Write-Host "Build failed!" -ForegroundColor Red; exit
 
 # Verify
 Write-Host "[3/3] Verifying build..." -ForegroundColor Yellow
-$appDll = Join-Path $RootDir "src/AreaCut.App/bin/$Configuration/net8.0-windows10.0.19041.0/win-x64/AreaCut.dll"
+$appDll = Join-Path $RootDir "src/AreaCut.App/bin/x64/$Configuration/net8.0-windows10.0.19041.0/AreaCut.dll"
 if (Test-Path $appDll) {
     Write-Host "Build succeeded!" -ForegroundColor Green
 } else {

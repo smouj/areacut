@@ -1,7 +1,6 @@
 using AreaCutProject = AreaCut.Core.ProjectModel.AreaCutProject;
 using AreaCut.Core.ProjectModel;
 using System;
-using System.Collections.ObjectModel;
 using AreaCut.Core.Commands;
 using AreaCut.Core.Models;
 using AreaCut.Core.Time;
@@ -23,6 +22,7 @@ public sealed partial class MainWindow : Window
     private AreaCutProject? _project;
     private UndoRedoStack? _undoRedo;
     private PreviewClock? _clock;
+    private DispatcherTimer? _timecodeTimer;
     private string? _selectedClipId;
 
     public MainWindow()
@@ -46,6 +46,22 @@ public sealed partial class MainWindow : Window
         {
             root.KeyDown += OnRootKeyDown;
         }
+
+        PlayPauseButton.Click += (_, _) => TogglePlayPause();
+        PreviousFrameButton.Click += (_, _) => StepBackward();
+        NextFrameButton.Click += (_, _) => StepForward();
+        SplitButton.Click += (_, _) => SplitAtPlayhead();
+
+        // The PreviewClock is real and monotonic, but nothing renders frames yet,
+        // so the timecode reports that clock and nothing else.
+        _timecodeTimer = new DispatcherTimer { Interval = TimeSpan.FromMilliseconds(100) };
+        _timecodeTimer.Tick += (_, _) => UpdateTimecode();
+        _timecodeTimer.Start();
+
+        Closed += (_, _) => _timecodeTimer?.Stop();
+
+        UpdateTimecode();
+        UpdateCommandStates();
     }
 
     /// <summary>Initialize the window with a project.</summary>
@@ -54,17 +70,56 @@ public sealed partial class MainWindow : Window
         _project = project;
         _undoRedo = undoRedo;
         _clock = new PreviewClock();
+        _selectedClipId = null;
 
         UpdateProjectInfo();
+        UpdateTimecode();
+        UpdateCommandStates();
     }
 
     private void UpdateProjectInfo()
     {
-        if (_project == null) return;
-        ProjectInfoText.Text = $"{_project.Name} · {_project.Canvas.Width}×{_project.Canvas.Height} · {_project.Canvas.Fps}fps";
+        ProjectInfoText.Text = _project == null
+            ? string.Empty
+            : $"{_project.Name} · {_project.Canvas.Width}×{_project.Canvas.Height} · {_project.Canvas.Fps}fps";
     }
 
-    // Keyboard shortcut handling
+    private void UpdateTimecode()
+    {
+        TimecodeDisplay.Text = (_clock?.Position ?? TimeStamp.Zero).ToString();
+    }
+
+    /// <summary>Keeps the menu honest: a command is enabled only when it can act.</summary>
+    private void UpdateCommandStates()
+    {
+        UndoMenuItem.IsEnabled = _undoRedo?.CanUndo == true;
+        RedoMenuItem.IsEnabled = _undoRedo?.CanRedo == true;
+    }
+
+    // ----- menu commands -----
+
+    private void OnNewProjectClick(object sender, RoutedEventArgs e)
+    {
+        var project = _app.NewProject("Untitled");
+        Initialize(project, _app.UndoRedo);
+    }
+
+    private void OnUndoClick(object sender, RoutedEventArgs e)
+    {
+        _undoRedo?.Undo();
+        UpdateCommandStates();
+    }
+
+    private void OnRedoClick(object sender, RoutedEventArgs e)
+    {
+        _undoRedo?.Redo();
+        UpdateCommandStates();
+    }
+
+    private void OnExitClick(object sender, RoutedEventArgs e) => Close();
+
+    // ----- keyboard -----
+
     private void OnRootKeyDown(object sender, KeyRoutedEventArgs e)
     {
         if (_project == null || _undoRedo == null) return;
@@ -78,14 +133,12 @@ public sealed partial class MainWindow : Window
             {
                 case VirtualKey.Z when !shift.HasFlag(Windows.UI.Core.CoreVirtualKeyStates.Down):
                     _undoRedo.Undo();
+                    UpdateCommandStates();
                     e.Handled = true;
                     break;
                 case VirtualKey.Y:
                     _undoRedo.Redo();
-                    e.Handled = true;
-                    break;
-                case VirtualKey.S when !shift.HasFlag(Windows.UI.Core.CoreVirtualKeyStates.Down):
-                    // Save
+                    UpdateCommandStates();
                     e.Handled = true;
                     break;
             }
@@ -114,16 +167,8 @@ public sealed partial class MainWindow : Window
                     StepForward();
                     e.Handled = true;
                     break;
-                case VirtualKey.J:
-                    // Reverse playback
-                    e.Handled = true;
-                    break;
                 case VirtualKey.K:
                     PausePlayback();
-                    e.Handled = true;
-                    break;
-                case VirtualKey.L:
-                    // Forward playback
                     e.Handled = true;
                     break;
             }
@@ -135,6 +180,7 @@ public sealed partial class MainWindow : Window
         if (_clock == null) return;
         if (_clock.IsPlaying) _clock.Pause();
         else _clock.Play();
+        UpdateTimecode();
     }
 
     private void PausePlayback() => _clock?.Pause();
@@ -147,6 +193,7 @@ public sealed partial class MainWindow : Window
 
         var command = new SplitClipCommand(_project, selectedClip.Id, _clock.Position);
         _undoRedo.Execute(command);
+        UpdateCommandStates();
     }
 
     private void DeleteSelectedClip()
@@ -157,6 +204,7 @@ public sealed partial class MainWindow : Window
 
         var command = new DeleteClipCommand(_project, selectedClip.Id);
         _undoRedo.Execute(command);
+        UpdateCommandStates();
     }
 
     private void StepForward() => _clock?.Seek(_clock.Position.Add(TimeStamp.FromSeconds(1.0 / 30)));

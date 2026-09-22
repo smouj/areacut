@@ -40,8 +40,10 @@ public sealed partial class App : Microsoft.UI.Xaml.Application
             // Non-fatal: some MF features may not work
         }
 
-        // Create main window
+        // Create the main window and give it a project, so the shell opens in a
+        // usable state instead of empty.
         var window = new MainWindow();
+        window.Initialize(NewProject("Untitled"), UndoRedo);
         window.Activate();
     }
 

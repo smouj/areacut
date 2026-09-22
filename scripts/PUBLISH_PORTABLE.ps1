@@ -35,6 +35,7 @@ dotnet publish "$RootDir/src/AreaCut.App/AreaCut.App.csproj" `
     --self-contained true `
     --output $PublishDir `
     -p:Version=$Version `
+    -p:Platform=x64 `
     -p:PublishTrimmed=false
 
 if ($LASTEXITCODE -ne 0) { Write-Host "Publish failed!" -ForegroundColor Red; exit 1 }

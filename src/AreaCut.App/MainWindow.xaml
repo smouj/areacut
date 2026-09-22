@@ -14,25 +14,25 @@
         <!-- Menu bar -->
         <MenuBar Grid.Row="0">
             <MenuBarItem Title="File">
-                <MenuFlyoutItem Text="New Project"/>
-                <MenuFlyoutItem Text="Open..."/>
-                <MenuFlyoutItem Text="Save"/>
-                <MenuFlyoutItem Text="Save As..."/>
+                <MenuFlyoutItem x:Name="NewProjectMenuItem" Text="New Project" Click="OnNewProjectClick"/>
+                <MenuFlyoutItem Text="Open..." IsEnabled="False" ToolTipService.ToolTip="Not implemented yet"/>
+                <MenuFlyoutItem Text="Save" IsEnabled="False" ToolTipService.ToolTip="Not implemented yet"/>
+                <MenuFlyoutItem Text="Save As..." IsEnabled="False" ToolTipService.ToolTip="Not implemented yet"/>
                 <MenuFlyoutSeparator/>
-                <MenuFlyoutItem Text="Export..."/>
+                <MenuFlyoutItem Text="Export..." IsEnabled="False" ToolTipService.ToolTip="Not implemented yet"/>
+                <MenuFlyoutSeparator/>
+                <MenuFlyoutItem Text="Exit" Click="OnExitClick"/>
             </MenuBarItem>
             <MenuBarItem Title="Edit">
-                <MenuFlyoutItem Text="Undo" KeyboardAcceleratorTextOverride="Ctrl+Z"/>
-                <MenuFlyoutItem Text="Redo" KeyboardAcceleratorTextOverride="Ctrl+Y"/>
+                <MenuFlyoutItem x:Name="UndoMenuItem" Text="Undo" IsEnabled="False"
+                                KeyboardAcceleratorTextOverride="Ctrl+Z" Click="OnUndoClick"/>
+                <MenuFlyoutItem x:Name="RedoMenuItem" Text="Redo" IsEnabled="False"
+                                KeyboardAcceleratorTextOverride="Ctrl+Y" Click="OnRedoClick"/>
             </MenuBarItem>
             <MenuBarItem Title="View">
-                <MenuFlyoutItem Text="Safe Areas"/>
+                <MenuFlyoutItem Text="Safe Areas" IsEnabled="False" ToolTipService.ToolTip="Not implemented yet"/>
             </MenuBarItem>
         </MenuBar>
-
-
-        <!-- Menu bar -->
-        <!-- menubar removed -->
 
         <!-- Main content area: Media bin | Preview | Properties -->
         <Grid Grid.Row="1">

@@ -8,7 +8,13 @@
     <WindowsPackageType>None</WindowsPackageType>
     <EnableWindowsTargeting>true</EnableWindowsTargeting>
     <RuntimeIdentifiers>win-x64</RuntimeIdentifiers>
+    <!-- Documented WindowsAppSDK workaround: dotnet build otherwise cannot load the
+         Microsoft.Build.Packaging.Pri.Tasks MSBuild task (MSB4062) for unpackaged apps. -->
+    <EnableMsixTooling>true</EnableMsixTooling>
+    <!-- Unpackaged app: bundle the Windows App Runtime so no system install is needed. -->
+    <WindowsAppSDKSelfContained>true</WindowsAppSDKSelfContained>
     <ApplicationManifest>app.manifest</ApplicationManifest>
+    <ApplicationIcon>..\..\assets\AreaCut.ico</ApplicationIcon>
     <Nullable>enable</Nullable>
     <LangVersion>latest</LangVersion>
     <ImplicitUsings>enable</ImplicitUsings>
