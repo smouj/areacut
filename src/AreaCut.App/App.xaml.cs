@@ -3,6 +3,7 @@ using AreaCut.Core.ProjectModel;
 using System;
 using Microsoft.UI.Xaml;
 using AreaCut.Core.Serialization;
+using Models = AreaCut.Core.Models;
 using AreaCut.Core.Undo;
 using AreaCut.Media.MediaFoundation;
 
@@ -66,7 +67,7 @@ public sealed partial class App : Microsoft.UI.Xaml.Application
     /// <summary>Open an existing project file.</summary>
     public async System.Threading.Tasks.Task<AreaCutProject> OpenProjectAsync(string filePath)
     {
-        var serializer = new AreaCutProjectSerializer();
+        var serializer = new ProjectSerializer();
         _currentProject = await serializer.LoadAsync(filePath);
         _undoRedo?.Clear();
 

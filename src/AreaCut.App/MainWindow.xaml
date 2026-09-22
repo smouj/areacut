@@ -14,21 +14,25 @@
         <!-- Menu bar -->
         <MenuBar Grid.Row="0">
             <MenuBarItem Title="File">
-                <MenuBarItem Title="New Project"/>
-                <MenuBarItem Title="Open..."/>
-                <MenuBarItem Title="Save"/>
-                <MenuBarItem Title="Save As..."/>
-                <MenuBarItem Title="---"/>
-                <MenuBarItem Title="Export..."/>
+                <MenuFlyoutItem Text="New Project"/>
+                <MenuFlyoutItem Text="Open..."/>
+                <MenuFlyoutItem Text="Save"/>
+                <MenuFlyoutItem Text="Save As..."/>
+                <MenuFlyoutSeparator/>
+                <MenuFlyoutItem Text="Export..."/>
             </MenuBarItem>
             <MenuBarItem Title="Edit">
-                <MenuBarItem Title="Undo  Ctrl+Z"/>
-                <MenuBarItem Title="Redo  Ctrl+Y"/>
+                <MenuFlyoutItem Text="Undo" KeyboardAcceleratorTextOverride="Ctrl+Z"/>
+                <MenuFlyoutItem Text="Redo" KeyboardAcceleratorTextOverride="Ctrl+Y"/>
             </MenuBarItem>
             <MenuBarItem Title="View">
-                <MenuBarItem Title="Safe Areas"/>
+                <MenuFlyoutItem Text="Safe Areas"/>
             </MenuBarItem>
         </MenuBar>
+
+
+        <!-- Menu bar -->
+        <!-- menubar removed -->
 
         <!-- Main content area: Media bin | Preview | Properties -->
         <Grid Grid.Row="1">
@@ -46,14 +50,14 @@
                     <RowDefinition Height="Auto"/>
                     <RowDefinition Height="*"/>
                 </Grid.RowDefinitions>
-                <TextBlock Grid.Row="0" Text="Media" Style="{StaticResource SubtitleTextBlockStyle}"
+                <TextBlock Grid.Row="0" Text="Media" Style="{ThemeResource SubtitleTextBlockStyle}"
                            Margin="16,12,16,8"/>
                 <ListView Grid.Row="1" x:Name="MediaListView"
                           SelectionMode="Single"
                           Padding="8"/>
             </Grid>
 
-            <GridSplitter Grid.Column="1" Width="2"/>
+            <Border Grid.Column="1" Width="2" Background="{ThemeResource DividerStrokeColorDefaultBrush}"/>
 
             <!-- Center: Preview -->
             <Grid Grid.Column="2">
@@ -89,7 +93,7 @@
                 </StackPanel>
             </Grid>
 
-            <GridSplitter Grid.Column="3" Width="2"/>
+            <Border Grid.Column="3" Width="2" Background="{ThemeResource DividerStrokeColorDefaultBrush}"/>
 
             <!-- Right panel: Properties -->
             <Grid Grid.Column="4" Background="{ThemeResource CardBackgroundFillColorDefaultBrush}">
@@ -97,7 +101,7 @@
                     <RowDefinition Height="Auto"/>
                     <RowDefinition Height="*"/>
                 </Grid.RowDefinitions>
-                <TextBlock Grid.Row="0" Text="Properties" Style="{StaticResource SubtitleTextBlockStyle}"
+                <TextBlock Grid.Row="0" Text="Properties" Style="{ThemeResource SubtitleTextBlockStyle}"
                            Margin="16,12,16,8"/>
                 <ScrollViewer Grid.Row="1">
                     <StackPanel x:Name="PropertiesPanel" Padding="16" Spacing="8"/>
@@ -118,7 +122,7 @@
                 <Border Grid.Row="0" Background="{ThemeResource CardBackgroundFillColorDefaultBrush}"
                         Padding="8,4">
                     <StackPanel Orientation="Horizontal" Spacing="16">
-                        <TextBlock Text="Timeline" Style="{StaticResource BodyStrongTextBlockStyle}"/>
+                        <TextBlock Text="Timeline" Style="{ThemeResource BodyStrongTextBlockStyle}"/>
                         <TextBlock x:Name="ZoomLevel" Text="100%" VerticalAlignment="Center"
                                    Foreground="{ThemeResource TextFillColorSecondaryBrush}"/>
                     </StackPanel>

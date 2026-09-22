@@ -6,8 +6,10 @@ using AreaCut.Core.Commands;
 using AreaCut.Core.Models;
 using AreaCut.Core.Time;
 using AreaCut.Core.Undo;
+using AreaCut.Rendering.Preview;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Input;
+using Windows.System;
 
 namespace AreaCut.App;
 
@@ -21,11 +23,14 @@ public sealed partial class MainWindow : Window
     private AreaCutProject? _project;
     private UndoRedoStack? _undoRedo;
     private PreviewClock? _clock;
+    private string? _selectedClipId;
 
     public MainWindow()
     {
         _app = (App)App.Current;
+        InitializeComponent();
         Title = "AreaCut";
+
         // Set minimum window size appropriate for video editing
         var hWnd = WinRT.Interop.WindowNative.GetWindowHandle(this);
         var windowId = Microsoft.UI.Win32Interop.GetWindowIdFromWindow(hWnd);
@@ -33,6 +38,13 @@ public sealed partial class MainWindow : Window
         if (appWindow != null)
         {
             appWindow.Resize(new Windows.Graphics.SizeInt32(1440, 900));
+        }
+
+        // WinUI 3's Window is not a UIElement and exposes no key surface of its
+        // own, so shortcuts are handled on the root element.
+        if (Content is UIElement root)
+        {
+            root.KeyDown += OnRootKeyDown;
         }
     }
 
@@ -44,7 +56,6 @@ public sealed partial class MainWindow : Window
         _clock = new PreviewClock();
 
         UpdateProjectInfo();
-        BindKeyboardShortcuts();
     }
 
     private void UpdateProjectInfo()
@@ -53,19 +64,10 @@ public sealed partial class MainWindow : Window
         ProjectInfoText.Text = $"{_project.Name} · {_project.Canvas.Width}×{_project.Canvas.Height} · {_project.Canvas.Fps}fps";
     }
 
-    private void BindKeyboardShortcuts()
-    {
-        // Keyboard shortcuts are handled in the code-behind
-        // to avoid conflicts with text input focus
-    }
-
     // Keyboard shortcut handling
-    protected override void OnKeyDown(KeyRoutedEventArgs e)
+    private void OnRootKeyDown(object sender, KeyRoutedEventArgs e)
     {
         if (_project == null || _undoRedo == null) return;
-
-        // Don't intercept when a textbox has focus
-        // (handled by checking FocusManager.GetFocusedElement)
 
         var ctrl = Microsoft.UI.Input.InputKeyboardSource.GetKeyStateForCurrentThread(VirtualKey.Control);
         var shift = Microsoft.UI.Input.InputKeyboardSource.GetKeyStateForCurrentThread(VirtualKey.Shift);
@@ -126,8 +128,6 @@ public sealed partial class MainWindow : Window
                     break;
             }
         }
-
-        base.OnKeyDown(e);
     }
 
     private void TogglePlayPause()
@@ -163,5 +163,4 @@ public sealed partial class MainWindow : Window
     private void StepBackward() => _clock?.Seek(_clock.Position.Subtract(TimeStamp.FromSeconds(1.0 / 30)));
 
     private Clip? GetSelectedClip() => _project?.Clips.Find(c => c.Id == _selectedClipId);
-    private string? _selectedClipId;
 }
