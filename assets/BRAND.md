@@ -1,28 +1,24 @@
-# AreaCut brand
+# AreaCut visual identity
 
-AreaCut is the editing companion to AreaRec. Its identity keeps the shared crop-frame language, then adds a diagonal cut mark and a coral accent so the two products are related without being confused.
+AreaCut is the video editor in the Area desktop suite. Its icon uses the shared crop-frame mark and dark tile, with #FF806E reserved for its product action.
 
-## Core assets
+## Assets
 
-| Asset | Use |
+| Asset | Purpose |
 | --- | --- |
-| `mark.png` | Transparent icon for app surfaces, favicons, and product UI |
-| `logo.png` | Dark lockup for README, documentation, and release pages |
-| `social-banner.png` | GitHub/social preview banner |
-| `AreaCut.ico` | Windows executable and shortcut icon |
-| `logo.svg` | Vector-friendly lockup for future design tooling |
+| `mark.svg` | Editable vector source for the app icon |
+| `mark.png` | 512 x 512 icon for documentation and product surfaces |
+| `logo.svg` / `logo.png` | Square logo lockup for README and documentation |
+| `social-banner.svg` / `social-banner.png` | Repository and social preview |
+| `AreaCut.ico` | Windows executable, window and shortcut icon; includes 16, 24, 32, 48, 64, 128 and 256 px images |
 
-## Tokens
+## Shared Area system
 
-- Deep charcoal: `#0F0F12`
-- Warm ivory: `#F4F1EA`
-- AreaCut coral: `#FF6B5F`
-- Muted graphite: `#25252B`
+- Tile: `#171E28`
+- Selection frame and foreground: `#EEF1F5`
+- App accent: `#FF806E`
+- Shared frame: four rounded crop corners around one simple product glyph
+- Use flat fills and strokes. Keep the silhouette and accent clear at small Windows icon sizes.
+- Keep `mark.svg` as the source for icon artwork; export raster assets from it without adding filters, shadows or gradients.
 
-Use the coral only as an accent. The crop frame and wordmark should remain ivory on dark surfaces; never add gradients, shadows, or a second highlight color.
-
-## Relationship to AreaRec
-
-AreaRec owns capture and uses a recording red accent. AreaCut owns edit, reframe, caption, and export, and uses coral. Both products share the four-corner selection frame and a dark local-first presentation.
-
-The raster mark and lockups were generated with Codex's built-in image generation workflow, then cleaned and composed locally so text and icon geometry remain deterministic in the shipped files.
+The companion apps use the same frame and tile with distinct action glyphs: AreaRec records, AreaCut edits, AreaDown downloads and AreaSnap captures screenshots.
