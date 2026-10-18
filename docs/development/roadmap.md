@@ -49,8 +49,8 @@ current state and an editor you can actually cut a video with.
 - Performance profiling against the targets in [performance.md](performance.md)
 - Crash handling and emergency autosave in the UI
 - Settings UI
-- **AreaRec → AreaCut handover**: "Open in AreaCut" in AreaRec, single-instance
-  redirection in AreaCut, clean degradation when the sibling is not installed
+- **Voryda Rec → Voryda Cut handover**: "Open in Voryda Cut" in Voryda Rec, single-instance
+  redirection in Voryda Cut, clean degradation when the sibling is not installed
 
 ## v1.0 — Release
 
