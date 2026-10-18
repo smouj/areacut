@@ -1,6 +1,6 @@
-# AreaCut documentation
+# Voryda Cut documentation
 
-AreaCut is a local-first Windows video editor. The documents here are split by
+Voryda Cut is a local-first Windows video editor. The documents here are split by
 audience: what a user needs, what a contributor needs, and how the thing is
 built inside.
 
@@ -12,10 +12,10 @@ built inside.
 
 | Document | What it covers |
 | --- | --- |
-| [install.md](user/install.md) | How to get AreaCut — today and once the first release ships |
-| [supported-formats.md](user/supported-formats.md) | Video, audio and image files AreaCut can import |
+| [install.md](user/install.md) | How to get Voryda Cut — today and once the first release ships |
+| [supported-formats.md](user/supported-formats.md) | Video, audio and image files Voryda Cut can import |
 | [shortcuts.md](user/shortcuts.md) | Keyboard and mouse reference, with implementation status |
-| [privacy.md](user/privacy.md) | What AreaCut does, and does not do, with your data |
+| [privacy.md](user/privacy.md) | What Voryda Cut does, and does not do, with your data |
 
 ## For contributors
 
