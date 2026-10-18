@@ -26,7 +26,7 @@
   <a href="#current-status">Status</a> ·
   <a href="#implemented-foundation">Foundation</a> ·
   <a href="#architecture">Architecture</a> ·
-  <a href="#build-and-test">Build</a> ·
+  <a href="#build">Build</a> ·
   <a href="#privacy">Privacy</a>
 </p>
 
@@ -148,13 +148,13 @@ For development and the future desktop application:
 - .NET 8 SDK.
 - A native Windows filesystem path for the WinUI 3 application build.
 
-## Build and test
+## Build
 
 Clone the repository:
 
 ```powershell
-git clone https://github.com/smouj/areacut
-cd areacut
+git clone https://github.com/smouj/voryda-cut
+cd voryda-cut
 ```
 
 Use the repository build script:
@@ -214,11 +214,11 @@ The source code is distributed under the **MIT License**. See [LICENSE](LICENSE)
 </p>
 
 <p align="center">
-  <a href="https://github.com/smouj/areasnap">Snap</a>
+  <a href="https://github.com/smouj/voryda-snap">Snap</a>
   ·
-  <a href="https://github.com/smouj/arearec">Rec</a>
+  <a href="https://github.com/smouj/voryda-rec">Rec</a>
   ·
-  <a href="https://github.com/smouj/areadown">Down</a>
+  <a href="https://github.com/smouj/voryda-down">Down</a>
   ·
-  <a href="https://github.com/smouj/areacut">Cut</a>
+  <a href="https://github.com/smouj/voryda-cut">Cut</a>
 </p>
