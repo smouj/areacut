@@ -1,6 +1,6 @@
 <p align="center">
-  <img src="assets/logo.png" alt="AreaCut" width="128"><br>
-  <strong>AreaCut</strong>
+  <img src="assets/logo.svg" alt="Voryda Cut" width="128"><br>
+  <strong>Voryda Cut</strong>
 </p>
 
 <p align="center">
@@ -8,7 +8,7 @@
 </p>
 
 <p align="center">
-  <img src="assets/social-banner.png" alt="AreaCut — Cut. Reframe. Caption. Export." width="680">
+  <img src="assets/social-banner.svg" alt="Voryda Cut — Cut. Reframe. Caption. Export." width="680">
 </p>
 
 <p align="center">
@@ -19,16 +19,16 @@
   <img src="https://img.shields.io/badge/status-pre--alpha-orange?style=flat-square" alt="Status: pre-alpha">
 </p>
 
-**AreaCut** is a minimal, local-first video editor for Windows, built for social content. It turns desktop recordings and videos into Instagram Reels, TikToks, YouTube Shorts and standard landscape video — entirely on your own machine. No account, no cloud, no telemetry, no uploads.
+**Voryda Cut** is a minimal, local-first video editor for Windows, built for social content. It turns desktop recordings and videos into Instagram Reels, TikToks, YouTube Shorts and standard landscape video — entirely on your own machine. No account, no cloud, no telemetry, no uploads.
 
-It is the editing half of the Area family:
+It is the editing app in the Voryda family:
 
 | App | Job |
 | --- | --- |
-| [**AreaRec**](https://github.com/smouj/arearec) | Select a region. Record it. Get an MP4. |
-| **AreaCut** | Cut it, reframe it, caption it, export it. |
+| [**Voryda Rec**](https://github.com/smouj/arearec) | Select a region. Record it. Get an MP4. |
+| **Voryda Cut** | Cut it, reframe it, caption it, export it. |
 
-The two are independent applications. AreaCut opens any video you already have, and it is designed to pick up a recording handed over by AreaRec — but neither requires the other.
+The two are independent applications. Voryda Cut opens any video you already have, and it is designed to pick up a recording handed over by Voryda Rec — but neither requires the other.
 
 > ### ⚠️ Pre-alpha — not usable for real editing yet
 >
@@ -57,7 +57,7 @@ The two are independent applications. AreaCut opens any video you already have, 
 | Functional timeline UI — import, trim, split inside the app | ⛔ not started |
 | H.264/AAC MP4 export | ⛔ not started |
 | Audio playback and mixing (WASAPI) | ⛔ not started |
-| AreaRec → AreaCut handover | ⛔ not started ([planned for v0.4](docs/development/roadmap.md)) |
+| Voryda Rec → Voryda Cut handover | ⛔ not started ([planned for v0.4](docs/development/roadmap.md)) |
 
 ## Features
 
@@ -111,7 +111,7 @@ Full build, test and packaging details: [docs/development/building.md](docs/deve
 
 ## Privacy
 
-AreaCut makes no network requests. No telemetry, no analytics, no accounts, no cloud storage. Project files and media stay on your disk. Details: [docs/user/privacy.md](docs/user/privacy.md).
+Voryda Cut makes no network requests. No telemetry, no analytics, no accounts, no cloud storage. Project files and media stay on your disk. Details: [docs/user/privacy.md](docs/user/privacy.md).
 
 ## License
 
@@ -119,5 +119,5 @@ MIT — see [LICENSE](LICENSE). Brand assets and their terms: [assets/BRAND.md](
 
 ## Related
 
-- [AreaRec](https://github.com/smouj/arearec) — the capture half of the family
+- [Voryda Rec](https://github.com/smouj/arearec) — the recording app in the Voryda family
 - [github.com/smouj](https://github.com/smouj) — the rest of the desktop suite
