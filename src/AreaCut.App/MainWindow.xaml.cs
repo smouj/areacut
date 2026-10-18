@@ -29,7 +29,7 @@ public sealed partial class MainWindow : Window
     {
         _app = (App)App.Current;
         InitializeComponent();
-        Title = "AreaCut";
+        Title = "Voryda Cut";
 
         // Set minimum window size appropriate for video editing
         var hWnd = WinRT.Interop.WindowNative.GetWindowHandle(this);
