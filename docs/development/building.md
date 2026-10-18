@@ -1,4 +1,4 @@
-# Building AreaCut from source
+# Building Voryda Cut from source
 
 ## Prerequisites
 
