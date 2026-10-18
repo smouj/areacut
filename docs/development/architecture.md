@@ -1,6 +1,6 @@
-# AreaCut Architecture
+# Voryda Cut Architecture
 
-AreaCut is a Windows-native video editor built with C# / .NET 8 / WinUI 3.
+Voryda Cut is a Windows-native video editor built with C# / .NET 8 / WinUI 3.
 
 ## Dependency Direction
 
@@ -76,7 +76,7 @@ Versioned JSON:
 
 Atomic saves via temp file + rename. Crash recovery via `.recovery` sidecar.
 
-## AreaRec Integration
+## Voryda Rec Integration
 
 **Status: not wired up yet.** The intended contract is a command-line handover:
 
@@ -87,7 +87,7 @@ AreaCut.exe "C:\path\to\recording.mp4"
 `Program.cs` already validates the extension and calls `App.OpenVideoDirectly`,
 which builds a project, adds a `MediaReference` and places a clip on the first
 video track. Two pieces are missing: the `MainWindow` created in `OnLaunched`
-never receives that project, and running AreaCut while another instance is open
+never receives that project, and running Voryda Cut while another instance is open
 exits instead of redirecting the file to the existing window. Tracked for v0.4 in
 [roadmap.md](roadmap.md).
 
