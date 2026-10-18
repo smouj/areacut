@@ -1,6 +1,6 @@
-# Installing AreaCut
+# Installing Voryda Cut
 
-> **There is no public build yet.** AreaCut is pre-alpha: the engine is written
+> **There is no public build yet.** Voryda Cut is pre-alpha: the engine is written
 > and tested, but the interface is still a shell and cannot be used for real
 > editing. This page describes what installation will look like, and how to run
 > the current source today.
