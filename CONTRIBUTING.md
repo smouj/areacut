@@ -1,9 +1,9 @@
-# Contributing to AreaCut
+# Contributing to Voryda Cut
 
 ## Bug Reports
 
 Open an issue with:
-- AreaCut version
+- Voryda Cut version
 - Windows version
 - Steps to reproduce
 - Expected vs actual behavior
