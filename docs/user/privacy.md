@@ -1,6 +1,6 @@
 # Privacy
 
-AreaCut does not make network requests. All processing happens on your machine.
+Voryda Cut does not make network requests. All processing happens on your machine.
 
 - No telemetry
 - No analytics
@@ -9,7 +9,7 @@ AreaCut does not make network requests. All processing happens on your machine.
 - No API keys
 - No server
 
-Project files and media stay on your local disk. The `.areacut` format stores file paths, not file contents. If you move source files, AreaCut offers to relink them.
+Project files and media stay on your local disk. The `.areacut` format stores file paths, not file contents. If you move source files, Voryda Cut offers to relink them.
 
 Crash logs are written locally and never sent anywhere.
 
