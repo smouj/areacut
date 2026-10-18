@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900" role="img" aria-labelledby="title desc">
-  <title id="title">AreaCut social banner</title>
-  <desc id="desc">AreaCut local-first video editor branding.</desc>
+  <title id="title">Voryda Cut social banner</title>
+  <desc id="desc">Voryda Cut local-first video editor branding.</desc>
   <rect width="1600" height="900" fill="#0F0F12"/>
   <g stroke="#17171B" stroke-width="1">
     <path d="M0 80h1600M0 160h1600M0 240h1600M0 320h1600M0 400h1600M0 480h1600M0 560h1600M0 640h1600M0 720h1600M0 800h1600"/>
@@ -15,7 +15,7 @@
     <path d="M510 620h110V510"/>
   </g>
   <path d="M300 570 500 370" stroke="#FF6B5F" stroke-width="48" stroke-linecap="round"/>
-  <text x="190" y="720" fill="#F4F1EA" font-family="Segoe UI, Arial, sans-serif" font-size="104" font-weight="700">AreaCut</text>
+  <text x="190" y="720" fill="#F4F1EA" font-family="Segoe UI, Arial, sans-serif" font-size="104" font-weight="700">Voryda Cut</text>
   <text x="194" y="778" fill="#FF6B5F" font-family="Segoe UI, Arial, sans-serif" font-size="30" letter-spacing="2">CUT  ·  REFRAME  ·  CAPTION  ·  EXPORT</text>
   <text x="1110" y="185" fill="#77777F" font-family="Segoe UI, Arial, sans-serif" font-size="24">FOCUS</text>
   <text x="1110" y="285" fill="#F4F1EA" font-family="Segoe UI, Arial, sans-serif" font-size="56" font-weight="700">EDIT</text>
