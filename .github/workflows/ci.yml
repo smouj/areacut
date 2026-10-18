@@ -24,7 +24,7 @@ jobs:
     - name: Verify brand assets
       shell: pwsh
       run: |
-        $required = @('assets/mark.png', 'assets/logo.png', 'assets/social-banner.png', 'assets/AreaCut.ico')
+        $required = @('assets/mark.png', 'assets/logo.png', 'assets/logo-dark.png', 'assets/AreaCut.ico')
         foreach ($asset in $required) {
           if (-not (Test-Path $asset)) { throw "Missing required brand asset: $asset" }
         }
