@@ -36,6 +36,12 @@
 
 The current WinUI 3 window is a shell around the editing foundation. Import, functional timeline editing, preview, audio playback and final H.264/AAC export are not complete. There is no public build or GitHub Release.
 
+## Screenshot
+
+![Voryda Cut screenshot](docs/screenshots/voryda-cut.png)
+
+*Captured from the Windows app. Sample URL and local folder values are anonymized where applicable.*
+
 ## Current status
 
 The repository is **pre-alpha**. The distinction between implemented foundation code and user-facing functionality is important:

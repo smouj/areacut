@@ -71,10 +71,19 @@
                         Background="#0F0F12"
                         CornerRadius="4"
                         Margin="8">
-                    <TextBlock Text="Drop a video to start editing"
-                               HorizontalAlignment="Center"
-                               VerticalAlignment="Center"
-                               Foreground="#666666"/>
+                    <StackPanel HorizontalAlignment="Center"
+                                VerticalAlignment="Center"
+                                Spacing="8">
+                        <TextBlock Text="Video preview is not available yet"
+                                   HorizontalAlignment="Center"
+                                   Foreground="#C8C8C8"
+                                   FontSize="16"
+                                   AutomationProperties.Name="Video preview is not available yet"/>
+                        <TextBlock Text="Import and timeline editing are still in development."
+                                   HorizontalAlignment="Center"
+                                   Foreground="#888888"
+                                   TextAlignment="Center"/>
+                    </StackPanel>
                 </Border>
 
                 <!-- Playback controls -->
@@ -82,10 +91,18 @@
                             HorizontalAlignment="Center"
                             Spacing="8"
                             Margin="0,4,0,8">
-                    <Button x:Name="PreviousFrameButton" Content="&#xE76B;" FontFamily="Segoe MDL2 Assets"/>
-                    <Button x:Name="PlayPauseButton" Content="&#xE768;" FontFamily="Segoe MDL2 Assets" Width="48"/>
-                    <Button x:Name="NextFrameButton" Content="&#xE76C;" FontFamily="Segoe MDL2 Assets"/>
-                    <Button x:Name="SplitButton" Content="S" FontWeight="Bold"/>
+                    <Button x:Name="PreviousFrameButton" Content="&#xE76B;" FontFamily="Segoe MDL2 Assets"
+                            ToolTipService.ToolTip="Step back one frame"
+                            AutomationProperties.Name="Previous frame"/>
+                    <Button x:Name="PlayPauseButton" Content="&#xE768;" FontFamily="Segoe MDL2 Assets" Width="48"
+                            ToolTipService.ToolTip="Play or pause the project clock"
+                            AutomationProperties.Name="Play or pause"/>
+                    <Button x:Name="NextFrameButton" Content="&#xE76C;" FontFamily="Segoe MDL2 Assets"
+                            ToolTipService.ToolTip="Step forward one frame"
+                            AutomationProperties.Name="Next frame"/>
+                    <Button x:Name="SplitButton" Content="Split" FontWeight="Bold"
+                            ToolTipService.ToolTip="Split the selected clip at the playhead"
+                            AutomationProperties.Name="Split selected clip"/>
                     <TextBlock x:Name="TimecodeDisplay" Text="00:00:00.000"
                                VerticalAlignment="Center"
                                Margin="8,0,0,0"

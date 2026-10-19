@@ -1,6 +1,7 @@
 using AreaCutProject = AreaCut.Core.ProjectModel.AreaCutProject;
 using AreaCut.Core.ProjectModel;
 using System;
+using System.Runtime.InteropServices;
 using AreaCut.Core.Commands;
 using AreaCut.Core.Models;
 using AreaCut.Core.Time;
@@ -18,6 +19,21 @@ namespace AreaCut.App;
 /// </summary>
 public sealed partial class MainWindow : Window
 {
+    private const uint SpiGetWorkArea = 0x0030;
+
+    [StructLayout(LayoutKind.Sequential)]
+    private struct NativeRect
+    {
+        public int Left;
+        public int Top;
+        public int Right;
+        public int Bottom;
+    }
+
+    [DllImport("user32.dll", SetLastError = true)]
+    [return: MarshalAs(UnmanagedType.Bool)]
+    private static extern bool SystemParametersInfo(uint action, uint parameter, out NativeRect rectangle, uint flags);
+
     private readonly App _app;
     private AreaCutProject? _project;
     private UndoRedoStack? _undoRedo;
@@ -31,13 +47,22 @@ public sealed partial class MainWindow : Window
         InitializeComponent();
         Title = "Voryda Cut";
 
-        // Set minimum window size appropriate for video editing
+        // Fit the editor shell inside the usable work area instead of forcing
+        // 1440×900 on displays that cannot show the full window.
         var hWnd = WinRT.Interop.WindowNative.GetWindowHandle(this);
         var windowId = Microsoft.UI.Win32Interop.GetWindowIdFromWindow(hWnd);
         var appWindow = Microsoft.UI.Windowing.AppWindow.GetFromWindowId(windowId);
         if (appWindow != null)
         {
-            appWindow.Resize(new Windows.Graphics.SizeInt32(1440, 900));
+            var workArea = GetWorkArea();
+            var workWidth = workArea.Right - workArea.Left;
+            var workHeight = workArea.Bottom - workArea.Top;
+            var width = Math.Max(720, Math.Min(1440, workWidth - 32));
+            var height = Math.Max(520, Math.Min(900, workHeight - 32));
+            appWindow.Resize(new Windows.Graphics.SizeInt32(width, height));
+            appWindow.Move(new Windows.Graphics.PointInt32(
+                workArea.Left + (workWidth - width) / 2,
+                workArea.Top + (workHeight - height) / 2));
         }
 
         // WinUI 3's Window is not a UIElement and exposes no key surface of its
@@ -116,6 +141,11 @@ public sealed partial class MainWindow : Window
     {
         UndoMenuItem.IsEnabled = _undoRedo?.CanUndo == true;
         RedoMenuItem.IsEnabled = _undoRedo?.CanRedo == true;
+        var hasSelectedClip = GetSelectedClip() is not null;
+        PreviousFrameButton.IsEnabled = hasSelectedClip;
+        PlayPauseButton.IsEnabled = hasSelectedClip;
+        NextFrameButton.IsEnabled = hasSelectedClip;
+        SplitButton.IsEnabled = hasSelectedClip;
     }
 
     // ----- menu commands -----
@@ -167,29 +197,30 @@ public sealed partial class MainWindow : Window
         }
         else
         {
+            var hasSelectedClip = GetSelectedClip() is not null;
             switch (e.Key)
             {
-                case VirtualKey.Space:
+                case VirtualKey.Space when hasSelectedClip:
                     TogglePlayPause();
                     e.Handled = true;
                     break;
-                case VirtualKey.S:
+                case VirtualKey.S when hasSelectedClip:
                     SplitAtPlayhead();
                     e.Handled = true;
                     break;
-                case VirtualKey.Delete:
+                case VirtualKey.Delete when hasSelectedClip:
                     DeleteSelectedClip();
                     e.Handled = true;
                     break;
-                case VirtualKey.Left:
+                case VirtualKey.Left when hasSelectedClip:
                     StepBackward();
                     e.Handled = true;
                     break;
-                case VirtualKey.Right:
+                case VirtualKey.Right when hasSelectedClip:
                     StepForward();
                     e.Handled = true;
                     break;
-                case VirtualKey.K:
+                case VirtualKey.K when hasSelectedClip:
                     PausePlayback();
                     e.Handled = true;
                     break;
@@ -233,4 +264,15 @@ public sealed partial class MainWindow : Window
     private void StepBackward() => _clock?.Seek(_clock.Position.Subtract(TimeStamp.FromSeconds(1.0 / 30)));
 
     private Clip? GetSelectedClip() => _project?.Clips.Find(c => c.Id == _selectedClipId);
+
+    private static NativeRect GetWorkArea()
+    {
+        if (SystemParametersInfo(SpiGetWorkArea, 0, out var rectangle, 0) &&
+            rectangle.Right > rectangle.Left && rectangle.Bottom > rectangle.Top)
+        {
+            return rectangle;
+        }
+
+        return new NativeRect { Left = 0, Top = 0, Right = 1440, Bottom = 900 };
+    }
 }
