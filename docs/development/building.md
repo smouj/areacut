@@ -85,8 +85,9 @@ Menu shortcut and, unless you pass `-NoDesktopShortcut`, a desktop shortcut.
 .\scripts\BUILD_APP_ICON.ps1
 ```
 
-Renders `assets/mark.png` onto the 256×256 `#0F0F12` canvas and writes
-`assets/AreaCut.ico`. Pass `-SourcePath` / `-OutputPath` to override either end.
+Builds `assets/AreaCut.ico` from `assets/mark.png`, preserving transparency and
+including 256, 128, 64, 48, 32, 24 and 16 pixel entries. Pass `-SourcePath` /
+`-OutputPath` to override either end.
 
 ## Solution layout
 
