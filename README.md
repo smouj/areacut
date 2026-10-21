@@ -1,8 +1,8 @@
 <p align="center">
   <picture>
-    <source media="(prefers-color-scheme: dark)" srcset="assets/logo-dark.png">
-    <source media="(prefers-color-scheme: light)" srcset="assets/logo.png">
-    <img src="assets/logo.png" alt="Voryda Cut app icon" width="180">
+    <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/smouj/voryda-cut/main/assets/logo-dark.png?v=b4a738683967ab6b81146dc1546db6ce7fe50ab27454b22cb48b94720bcb6c60">
+    <source media="(prefers-color-scheme: light)" srcset="https://raw.githubusercontent.com/smouj/voryda-cut/main/assets/logo.png?v=b4a738683967ab6b81146dc1546db6ce7fe50ab27454b22cb48b94720bcb6c60">
+    <img src="https://raw.githubusercontent.com/smouj/voryda-cut/main/assets/logo.png?v=b4a738683967ab6b81146dc1546db6ce7fe50ab27454b22cb48b94720bcb6c60" alt="Voryda Cut app icon" width="180">
   </picture>
 </p>
 
